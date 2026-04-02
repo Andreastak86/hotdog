@@ -4,6 +4,7 @@ import Hero from "../components/Hero.astro";
 import FeatureList from "../components/FeatureList.astro";
 import CommunityGallery from "../components/CommunityGallery.astro";
 import CtaBanner from "../components/CtaBanner.astro";
+import Footer from "../components/Footer.astro";
 
 const features = [
     {
@@ -84,4 +85,10 @@ const galleryItems = [
             secondaryLabel='Følg lanseringen i gruppen'
         />
     </main>
+    <Footer
+        brand='HOTDOGG Hundestrikk'
+        text='En varm og gjennomført bok for strikkeglade hundemennesker.'
+        shopHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
+        facebookHref='https://www.facebook.com/groups/653163954334182'
+    />
 </BaseLayout>

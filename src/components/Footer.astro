@@ -1,0 +1,56 @@
+---
+interface Props {
+    brand?: string;
+    text?: string;
+    facebookHref?: string;
+    shopHref?: string;
+}
+
+const {
+    brand = "HOTDOGG Hundestrikk",
+    text = "Varme gensere for kalde hunder.",
+    facebookHref,
+    shopHref,
+} = Astro.props;
+
+const year = new Date().getFullYear();
+---
+
+<footer class='site-footer'>
+    <div class='container site-footer__inner'>
+        <div class='site-footer__brand'>
+            <h2>{brand}</h2>
+            <p>{text}</p>
+        </div>
+
+        <nav class='site-footer__nav' aria-label='Footer'>
+            {
+                shopHref && (
+                    <a
+                        href={shopHref}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                    >
+                        Kjøp e-boken
+                    </a>
+                )
+            }
+
+            {
+                facebookHref && (
+                    <a
+                        href={facebookHref}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                    >
+                        Facebook-gruppe
+                    </a>
+                )
+            }
+        </nav>
+    </div>
+
+    <div class='container site-footer__bottom'>
+        <p>© {year} {brand}</p>
+    </div>
+</footer>
