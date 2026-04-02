@@ -1,10 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const links = {
-    buy: "#",
-    facebook: "#",
-};
+import Hero from "../components/Hero.astro";
+import FeatureList from "../components/FeatureList.astro";
 
 const features = [
     {
@@ -12,219 +9,37 @@ const features = [
         text: "Oppskriftene er laget for å være fine å se på, men også gode å bruke. Dette er plagg for ekte hundeliv.",
     },
     {
-        title: "Størrelser og tilpasning",
-        text: "Fra små frosne sofaprinsesser til større turkamerater. Målet er bedre passform og mindre gjetting.",
+        title: "Passform med personlighet",
+        text: "Her handler det ikke bare om å holde hunden varm, men om å lage noe som faktisk ser skikkelig fint ut også.",
     },
     {
         title: "Et levende fellesskap",
-        text: "Facebook-gruppen gjør boka større enn bare en bok. Her deler folk bilder, erfaringer og strikkeglede.",
+        text: "Facebook-gruppen gjør boka større enn bare en bok. Her deles bilder, erfaringer, tips og masse strikkeglede.",
     },
 ];
 ---
 
-<BaseLayout
-    title='HOTDOGG Hundestrikk | Varme gensere for kalde hunder'
-    description='Oppdag HOTDOGG Hundestrikk – boka med strikkeoppskrifter for kalde hunder. Kjøp boka og bli med i Facebook-fellesskapet.'
->
-    <header class='site-header'>
-        <div class='container site-header__inner'>
-            <a href='#' class='brand'>HOTDOGG</a>
-
-            <nav class='nav'>
-                <a href='#boka'>Boka</a>
-                <a href='#fellesskap'>Fellesskap</a>
-                <a href='#hostbok'>Kommende bok</a>
-            </nav>
-
-            <a href={links.buy} class='button button--primary'>Kjøp boka</a>
-        </div>
-    </header>
-
+<BaseLayout title='HOTDOGG Hundestrikk'>
     <main>
-        <section class='hero'>
-            <div class='container hero__grid'>
-                <div>
-                    <span class='eyebrow'>Strikkeoppskrifter til hund</span>
-                    <h1>
-                        Varme <span class='accent'>gensere</span><br />
-                        for kalde hunder
-                    </h1>
-                    <p class='lead'>
-                        En sjarmerende og gjennomført bok for deg som vil
-                        strikke plagg med personlighet, passform og varme.
-                        Oppdag HOTDOGG-universet – og bli med i et fellesskap
-                        fullt av hunder, ull og stor skaperglede.
-                    </p>
+        <Hero
+            eyebrow='Strikkeoppskrifter til hund'
+            title='Varme gensere for kalde hunder'
+            highlight='gensere'
+            text='En sjarmerende og gjennomført bok for deg som vil strikke plagg med personlighet, passform og varme. Oppdag HOTDOGG-universet – og bli med i et fellesskap fullt av hunder, ull og stor skaperglede.'
+            imageSrc='/book-cover.jpg'
+            imageAlt='Forsiden på HOTDOGG Hundestrikk'
+            primaryHref='#'
+            primaryLabel='Kjøp e-boken'
+            secondaryHref='#'
+            secondaryLabel='Bli med i Facebook-gruppa'
+            badgeText='Strikket med kjærlighet'
+        />
 
-                    <div class='hero__actions'>
-                        <a href={links.buy} class='button button--primary'
-                            >Kjøp e-boken</a
-                        >
-                        <a
-                            href={links.facebook}
-                            class='button button--secondary'
-                            >Bli med i Facebook-gruppa</a
-                        >
-                    </div>
-                </div>
-
-                <div class='hero__card'>
-                    <div class='hero__card-inner'>
-                        <img
-                            src='/images/book-cover.jpg'
-                            alt='Forsiden på HOTDOGG Hundestrikk'
-                        />
-                    </div>
-                    <div class='badge-note'>Strikket med kjærlighet</div>
-                </div>
-            </div>
-        </section>
-
-        <section id='boka' class='section section--soft'>
-            <div class='container book-grid'>
-                <div class='panel'>
-                    <img
-                        src='/images/book-cover.jpg'
-                        alt='Bokcover for HOTDOGG Hundestrikk'
-                    />
-                </div>
-
-                <div>
-                    <div class='section-heading'>
-                        <span class='eyebrow'>Den digitale klassikeren</span>
-                        <h2>Hundegensere på pinne 1.0</h2>
-                        <p>
-                            Boka samler oppskrifter laget for hunder som faktisk
-                            skal brukes ute i verden: på tur, i sofaen, i snøen
-                            og på den litt sure morgenturen når ingen egentlig
-                            har lyst, men alle trenger en genser.
-                        </p>
-                    </div>
-
-                    <ul class='checklist'>
-                        <li>
-                            Flere oppskrifter med tydelig uttrykk og praktisk
-                            passform
-                        </li>
-                        <li>Tilpasset ulike hundetyper og størrelser</li>
-                        <li>
-                            Perfekt for både gavestrikk og egne firbeinte
-                            stilikoner
-                        </li>
-                    </ul>
-
-                    <div class='hero__actions'>
-                        <a href={links.buy} class='button button--primary'
-                            >Kjøp boka nå</a
-                        >
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class='section'>
-            <div class='container'>
-                <div class='section-heading'>
-                    <span class='eyebrow'>Hvorfor folk elsker HOTDOGG</span>
-                    <h2>Mer enn bare oppskrifter</h2>
-                    <p>
-                        Dette handler ikke bare om masker og mønster. Det
-                        handler om å lage noe varmt, morsomt og personlig til en
-                        bestevenn med pels og hovedrolleenergi.
-                    </p>
-                </div>
-
-                <div class='feature-grid'>
-                    {
-                        features.map((feature) => (
-                            <article class='feature-card'>
-                                <h3>{feature.title}</h3>
-                                <p>{feature.text}</p>
-                            </article>
-                        ))
-                    }
-                </div>
-            </div>
-        </section>
-
-        <section id='fellesskap' class='section section--soft'>
-            <div class='container'>
-                <div class='section-heading'>
-                    <span class='eyebrow'>Vårt fellesskap</span>
-                    <h2>Delt av fellesskapet</h2>
-                    <p>
-                        Facebook-gruppen er stedet der lesere viser fram
-                        gensere, stiller spørsmål, deler erfaringer og legger ut
-                        bilder av hunder som ser ut som de vet at de er
-                        ikoniske.
-                    </p>
-                </div>
-
-                <div class='community-grid'>
-                    <img
-                        class='large'
-                        src='/images/dog-1.jpg'
-                        alt='Hund i strikket genser'
-                    />
-                    <img src='/images/dog-2.jpg' alt='Hund i strikket genser' />
-                    <img src='/images/dog-3.jpg' alt='Hund i strikket genser' />
-                    <img src='/images/dog-4.jpg' alt='Hund i strikket genser' />
-                </div>
-
-                <p class='community-copy'>
-                    Vil du se hvordan oppskriftene blir i virkeligheten, få
-                    inspirasjon fra andre og være tett på lanseringen av bok
-                    nummer to? Da er gruppa nesten like viktig som kaffe når man
-                    legger opp et nytt prosjekt.
-                </p>
-
-                <div class='hero__actions'>
-                    <a href={links.facebook} class='button button--secondary'
-                        >Bli med i Facebook-gruppa</a
-                    >
-                </div>
-            </div>
-        </section>
-
-        <section id='hostbok' class='section'>
-            <div class='container'>
-                <div class='cta-banner'>
-                    <div>
-                        <span class='eyebrow'>Nyhet i horisonten</span>
-                        <h2>Bok nummer to kommer i høst</h2>
-                        <p>
-                            Denne gangen kommer HOTDOGG som bokutgivelse på
-                            forlag. Mer inspirasjon, mer varme og enda mer av
-                            universet som allerede har samlet så mange
-                            strikkeglade hundemennesker.
-                        </p>
-                    </div>
-
-                    <div class='cta-actions'>
-                        <a href={links.buy} class='button button--primary'
-                            >Se boka</a
-                        >
-                        <a
-                            href={links.facebook}
-                            class='button button--secondary'
-                            >Følg lanseringen i gruppa</a
-                        >
-                    </div>
-                </div>
-            </div>
-        </section>
+        <FeatureList
+            eyebrow='Hvorfor folk elsker HOTDOGG'
+            title='Mer enn bare oppskrifter'
+            text='Dette handler ikke bare om masker og mønster. Det handler om å lage noe varmt, morsomt og personlig til en bestevenn med pels og hovedrolleenergi.'
+            items={features}
+        />
     </main>
-
-    <footer class='site-footer'>
-        <div class='container site-footer__inner'>
-            <div>
-                <strong>HOTDOGG Hundestrikk</strong><br />
-                Varme gensere for kalde hunder.
-            </div>
-
-            <div>
-                <a href={links.facebook}>Facebook</a>
-            </div>
-        </div>
-    </footer>
 </BaseLayout>
