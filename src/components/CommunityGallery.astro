@@ -1,0 +1,53 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+interface GalleryItem {
+    src: string;
+    alt: string;
+    featured?: boolean;
+}
+
+interface Props {
+    eyebrow?: string;
+    title: string;
+    text?: string;
+    items: GalleryItem[];
+    ctaHref?: string;
+    ctaLabel?: string;
+}
+
+const { eyebrow, title, text, items = [], ctaHref, ctaLabel } = Astro.props;
+const visibleItems = items.slice(0, 4);
+---
+
+<section class='section section--soft'>
+    <div class='container'>
+        <SectionHeading eyebrow={eyebrow} title={title} text={text} />
+
+        <div class='community-grid'>
+            {
+                visibleItems.map((item, index) => (
+                    <figure
+                        class:list={[
+                            "community-card",
+                            (item.featured || index === 0) &&
+                                "community-card--featured",
+                        ]}
+                    >
+                        <img src={item.src} alt={item.alt} loading='lazy' />
+                    </figure>
+                ))
+            }
+        </div>
+
+        {
+            ctaHref && ctaLabel && (
+                <div class='community-actions'>
+                    <a href={ctaHref} class='button button--secondary'>
+                        {ctaLabel}
+                    </a>
+                </div>
+            )
+        }
+    </div>
+</section>

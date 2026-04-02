@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import FeatureList from "../components/FeatureList.astro";
+import CommunityGallery from "../components/CommunityGallery.astro";
+import CtaBanner from "../components/CtaBanner.astro";
 
 const features = [
     {
@@ -17,6 +19,26 @@ const features = [
         text: "Facebook-gruppen gjør boka større enn bare en bok. Her deles bilder, erfaringer, tips og masse strikkeglede.",
     },
 ];
+
+const galleryItems = [
+    {
+        src: "/dog1.jpg",
+        alt: "Hund i grønn strikkegenser ute i naturen",
+        featured: true,
+    },
+    {
+        src: "/dog2.jpg",
+        alt: "Liten hund i strikket genser",
+    },
+    {
+        src: "/dog3.jpg",
+        alt: "Hund med mønstret genser",
+    },
+    {
+        src: "/dog5.jpg",
+        alt: "Hund i lys genser",
+    },
+];
 ---
 
 <BaseLayout title='HOTDOGG Hundestrikk'>
@@ -25,14 +47,15 @@ const features = [
             eyebrow='Strikkeoppskrifter til hund'
             title='Varme gensere for kalde hunder'
             highlight='gensere'
-            text='En sjarmerende og gjennomført bok for deg som vil strikke plagg med personlighet, passform og varme. Oppdag HOTDOGG-universet – og bli med i et fellesskap fullt av hunder, ull og stor skaperglede.'
+            text='En sjarmerende og gjennomført bok for deg som vil strikke plagg med personlighet, passform og varme.'
             imageSrc='/book-cover.jpg'
             imageAlt='Forsiden på HOTDOGG Hundestrikk'
-            primaryHref='#'
+            primaryHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
             primaryLabel='Kjøp e-boken'
-            secondaryHref='#'
+            primaryNewTab={true}
+            secondaryHref='https://www.facebook.com/groups/653163954334182'
             secondaryLabel='Bli med i Facebook-gruppa'
-            badgeText='Strikket med kjærlighet'
+            secondaryNewTab={true}
         />
 
         <FeatureList
@@ -40,6 +63,25 @@ const features = [
             title='Mer enn bare oppskrifter'
             text='Dette handler ikke bare om masker og mønster. Det handler om å lage noe varmt, morsomt og personlig til en bestevenn med pels og hovedrolleenergi.'
             items={features}
+        />
+
+        <CommunityGallery
+            eyebrow='Fra fellesskapet'
+            title='Delt av strikkeglade hundemennesker'
+            text='I Facebook-gruppen deles gensere, erfaringer, spørsmål og bilder av hunder som ser ut som de vet at de er hovedpersonen. Det gjør hele HOTDOGG-universet levende.'
+            items={galleryItems}
+            ctaHref='https://www.facebook.com/groups/653163954334182'
+            ctaLabel='Bli med i Facebook-gruppa'
+        />
+
+        <CtaBanner
+            eyebrow='Ny bok i høst'
+            title='Bok nummer to kommer på forlag'
+            text='Det som startet som en populær e-bok, vokser nå videre til en ny bokutgivelse på forlag. Kjøp den første boka i dag, og bli med i fellesskapet for å følge reisen videre.'
+            primaryHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
+            primaryLabel='Kjøp e-boken'
+            secondaryHref='https://www.facebook.com/groups/653163954334182'
+            secondaryLabel='Følg lanseringen i gruppa'
         />
     </main>
 </BaseLayout>

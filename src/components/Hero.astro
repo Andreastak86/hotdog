@@ -6,10 +6,15 @@ interface Props {
     text: string;
     imageSrc: string;
     imageAlt: string;
+
     primaryHref: string;
     primaryLabel: string;
+    primaryNewTab?: boolean;
+
     secondaryHref?: string;
     secondaryLabel?: string;
+    secondaryNewTab?: boolean;
+
     badgeText?: string;
 }
 
@@ -20,10 +25,15 @@ const {
     text,
     imageSrc,
     imageAlt,
+
     primaryHref,
     primaryLabel,
+    primaryNewTab = false,
+
     secondaryHref,
     secondaryLabel,
+    secondaryNewTab = false,
+
     badgeText = "Strikket med kjærlighet",
 } = Astro.props;
 
@@ -53,7 +63,12 @@ const titleParts =
             <p class='lead'>{text}</p>
 
             <div class='hero__actions'>
-                <a href={primaryHref} class='button button--primary'>
+                <a
+                    href={primaryHref}
+                    class='button button--primary'
+                    target={primaryNewTab ? "_blank" : undefined}
+                    rel={primaryNewTab ? "noopener noreferrer" : undefined}
+                >
                     {primaryLabel}
                 </a>
 
@@ -62,6 +77,12 @@ const titleParts =
                         <a
                             href={secondaryHref}
                             class='button button--secondary'
+                            target={secondaryNewTab ? "_blank" : undefined}
+                            rel={
+                                secondaryNewTab
+                                    ? "noopener noreferrer"
+                                    : undefined
+                            }
                         >
                             {secondaryLabel}
                         </a>
