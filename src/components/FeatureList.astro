@@ -1,0 +1,34 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+interface FeatureItem {
+    title: string;
+    text: string;
+}
+
+interface Props {
+    eyebrow?: string;
+    title: string;
+    text?: string;
+    items: FeatureItem[];
+}
+
+const { eyebrow, title, text, items = [] } = Astro.props;
+---
+
+<section class='section'>
+    <div class='container'>
+        <SectionHeading eyebrow={eyebrow} title={title} text={text} />
+
+        <div class='feature-grid'>
+            {
+                items.map((item) => (
+                    <article class='feature-card'>
+                        <h3>{item.title}</h3>
+                        <p>{item.text}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

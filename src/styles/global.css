@@ -12,7 +12,9 @@
     --max: 1200px;
 }
 
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -38,10 +40,27 @@ a {
     text-decoration: none;
 }
 
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
 .container {
     width: min(var(--max), calc(100% - 2rem));
     margin: 0 auto;
 }
+
+.section {
+    padding: 5rem 0;
+}
+
+.section--soft {
+    background: var(--surface);
+}
+
+/* Header */
 
 .site-header {
     position: sticky;
@@ -78,6 +97,8 @@ a {
     color: var(--muted);
 }
 
+/* Buttons */
+
 .button {
     display: inline-flex;
     align-items: center;
@@ -85,6 +106,7 @@ a {
     gap: 0.5rem;
     min-height: 48px;
     padding: 0 1.1rem;
+    border: 0;
     border-radius: 999px;
     font-weight: 700;
     transition:
@@ -108,16 +130,17 @@ a {
     color: var(--text);
 }
 
-.hero {
-    padding: 5rem 0 4rem;
+.button--secondary-light {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    backdrop-filter: blur(8px);
 }
 
-.hero__grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 3rem;
-    align-items: center;
+.button--secondary-light:hover {
+    background: rgba(255, 255, 255, 0.18);
 }
+
+/* Shared text styles */
 
 .eyebrow {
     display: inline-block;
@@ -129,28 +152,71 @@ a {
     font-weight: 700;
 }
 
-.hero h1,
-.section-heading h2,
-.cta-banner h2 {
-    font-family: "Newsreader", serif;
-    letter-spacing: -0.04em;
-    line-height: 0.92;
+.eyebrow--light {
+    color: rgba(255, 255, 255, 0.72);
 }
 
-.hero h1 {
-    margin: 0 0 1.2rem;
-    font-size: clamp(3rem, 8vw, 6.8rem);
+.section-heading {
+    max-width: 44rem;
+    margin-bottom: 2rem;
+}
+
+.section-heading--center {
+    margin-inline: auto;
+    text-align: center;
+}
+
+.section-heading h2 {
+    margin: 0 0 0.8rem;
+    font-family: "Newsreader", serif;
+    font-size: clamp(2.2rem, 5vw, 4.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
     text-transform: uppercase;
 }
 
-.hero .accent {
-    color: var(--primary);
+.section-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
 }
 
 .lead {
     max-width: 34rem;
     font-size: 1.08rem;
     color: var(--muted);
+    line-height: 1.7;
+}
+
+.accent {
+    color: var(--primary);
+}
+
+/* Hero */
+
+.hero {
+    padding: 5rem 0 4rem;
+}
+
+.hero__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.hero__content {
+    max-width: 42rem;
+}
+
+.hero__title {
+    margin: 0 0 1.2rem;
+    font-family: "Newsreader", serif;
+    font-size: clamp(3rem, 8vw, 6.8rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
 }
 
 .hero__actions {
@@ -158,6 +224,10 @@ a {
     flex-wrap: wrap;
     gap: 0.9rem;
     margin-top: 2rem;
+}
+
+.hero__visual {
+    position: relative;
 }
 
 .hero__card {
@@ -173,6 +243,13 @@ a {
     padding: 1rem;
     box-shadow: var(--shadow);
     transform: rotate(-2deg);
+}
+
+.hero__image {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    object-fit: cover;
 }
 
 .badge-note {
@@ -191,43 +268,137 @@ a {
     font-weight: 700;
     line-height: 1.1;
     transform: rotate(-12deg);
+    box-shadow: var(--shadow);
 }
 
-.section {
-    padding: 5rem 0;
+/* Feature list */
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
 }
 
-.section--soft {
-    background: var(--surface);
+.feature-card {
+    background: var(--surface-2);
+    border-radius: 24px;
+    padding: 1.6rem;
+    box-shadow: var(--shadow);
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
-.section-heading {
-    max-width: 44rem;
-    margin-bottom: 2rem;
+.feature-card h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+    line-height: 1.2;
 }
 
-.section-heading h2 {
-    margin: 0 0 0.8rem;
-    font-size: clamp(2.2rem, 5vw, 4.4rem);
+.feature-card p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* Community gallery */
+
+.community-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 0.8fr;
+    grid-template-rows: 260px 260px;
+    gap: 1rem;
+}
+
+.community-card {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 22px;
+    background: var(--surface-2);
+    box-shadow: var(--shadow);
+}
+
+.community-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.community-card--featured {
+    grid-row: 1 / span 2;
+}
+
+.community-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* CTA banner */
+
+.cta-banner {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2rem;
+    align-items: center;
+    background: var(--text);
+    color: white;
+    padding: 2rem;
+    border-radius: 36px;
+    box-shadow: var(--shadow);
+}
+
+.cta-banner__content h2 {
+    margin: 0 0 1rem;
+    font-family: "Newsreader", serif;
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
     text-transform: uppercase;
 }
 
-.section-heading p {
+.cta-banner__content p {
     margin: 0;
-    color: var(--muted);
-    font-size: 1.05rem;
+    max-width: 38rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.7;
+    font-size: 1.02rem;
 }
 
-.book-grid,
-.feature-grid,
-.cta-banner,
-.community-grid {
-    display: grid;
-    gap: 2rem;
+.cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: flex-start;
+    align-items: center;
 }
+
+/* Footer */
+
+.site-footer {
+    padding: 3rem 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.site-footer__inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(165, 0, 0, 0.08);
+    padding-top: 1.5rem;
+}
+
+/* Optional utility styles kept from earlier drafts */
 
 .book-grid {
+    display: grid;
     grid-template-columns: 0.9fr 1.1fr;
+    gap: 2rem;
     align-items: center;
 }
 
@@ -236,27 +407,6 @@ a {
     border-radius: var(--radius);
     padding: 1.5rem;
     box-shadow: var(--shadow);
-}
-
-.feature-grid {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.feature-card {
-    background: var(--surface-2);
-    padding: 1.6rem;
-    border-radius: var(--radius);
-}
-
-.feature-card h3 {
-    margin-top: 0;
-    margin-bottom: 0.6rem;
-    font-size: 1.1rem;
-}
-
-.feature-card p {
-    margin: 0;
-    color: var(--muted);
 }
 
 .checklist {
@@ -281,64 +431,13 @@ a {
     font-size: 1.3rem;
 }
 
-.community-grid {
-    grid-template-columns: 1.2fr 0.8fr 0.8fr;
-    grid-template-rows: 260px 260px;
-}
-
-.community-grid img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 22px;
-}
-
-.community-grid .large {
-    grid-row: 1 / span 2;
-}
-
-.community-copy {
-    margin-top: 1.5rem;
-    max-width: 40rem;
-    color: var(--muted);
-}
-
-.cta-banner {
-    grid-template-columns: 1.2fr 0.8fr;
-    align-items: center;
-    background: var(--text);
-    color: white;
-    padding: 2rem;
-    border-radius: 36px;
-}
-
-.cta-banner p {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    justify-content: flex-start;
-}
-
-.site-footer {
-    padding: 3rem 0;
-    color: var(--muted);
-    font-size: 0.95rem;
-}
-
-.site-footer__inner {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-    border-top: 1px solid rgba(165, 0, 0, 0.08);
-    padding-top: 1.5rem;
-}
+/* Responsive */
 
 @media (max-width: 900px) {
+    .hero {
+        padding: 3rem 0 3rem;
+    }
+
     .hero__grid,
     .book-grid,
     .feature-grid,
@@ -347,25 +446,43 @@ a {
         grid-template-columns: 1fr;
     }
 
+    .hero__grid {
+        gap: 2rem;
+    }
+
+    .hero__title {
+        font-size: clamp(2.8rem, 14vw, 4.8rem);
+    }
+
     .community-grid {
         grid-template-rows: auto;
     }
 
-    .community-grid .large {
+    .community-card--featured {
         grid-row: auto;
+    }
+
+    .community-card img {
+        aspect-ratio: 4 / 3;
+    }
+
+    .cta-banner {
+        padding: 1.5rem;
+        border-radius: 28px;
     }
 
     .nav {
         display: none;
     }
 
-    .hero {
-        padding-top: 3rem;
-    }
-
     .badge-note {
         left: 0.5rem;
         bottom: -1rem;
         width: 100px;
+        font-size: 0.85rem;
+    }
+
+    .feature-card {
+        min-height: unset;
     }
 }
