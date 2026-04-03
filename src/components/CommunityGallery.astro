@@ -14,9 +14,21 @@ interface Props {
     items: GalleryItem[];
     ctaHref?: string;
     ctaLabel?: string;
+    secondaryCtaHref?: string;
+    secondaryCtaLabel?: string;
 }
 
-const { eyebrow, title, text, items = [], ctaHref, ctaLabel } = Astro.props;
+const {
+    eyebrow,
+    title,
+    text,
+    items = [],
+    ctaHref,
+    ctaLabel,
+    secondaryCtaHref,
+    secondaryCtaLabel,
+} = Astro.props;
+
 const visibleItems = items.slice(0, 4);
 ---
 
@@ -41,11 +53,29 @@ const visibleItems = items.slice(0, 4);
         </div>
 
         {
-            ctaHref && ctaLabel && (
+            (ctaHref || secondaryCtaHref) && (
                 <div class='community-actions'>
-                    <a href={ctaHref} class='button button--secondary'>
-                        {ctaLabel}
-                    </a>
+                    {ctaHref && ctaLabel && (
+                        <a
+                            href={ctaHref}
+                            class='button button--secondary'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
+                            {ctaLabel}
+                        </a>
+                    )}
+
+                    {secondaryCtaHref && secondaryCtaLabel && (
+                        <a
+                            href={secondaryCtaHref}
+                            class='button button--secondary'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
+                            {secondaryCtaLabel}
+                        </a>
+                    )}
                 </div>
             )
         }

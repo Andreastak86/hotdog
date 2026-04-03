@@ -11,15 +11,20 @@ import Footer from "../components/Footer.astro";
 const features = [
     {
         title: "Gjennomarbeidede oppskrifter",
-        text: "Oppskriftene er laget for å være fine å se på, men også gode å bruke. Dette er plagg for ekte hundeliv.",
+        text: "Oppskriftene er laget for å være fine å se på, men også gode å bruke. Dette er plagg for ekte hundeliv. Strikket med raglan – fra hals til hale i ett stykke, helt uten montering. Det gir en myk, fleksibel passform og god bevegelsesfrihet for hunden.",
     },
     {
         title: "Passform med personlighet",
-        text: "Her handler det ikke bare om å holde hunden varm, men om å lage noe som faktisk ser skikkelig fint ut også.",
+        text: "Her handler det ikke bare om å holde hunden varm, men om å lage noe som faktisk ser skikkelig fint ut også. Alle genserne tar utgangspunkt i en basisoppskrift som gjør det enkelt å finne en god passform, uansett om hunden din er lang, kort, bred, slank – eller noe midt imellom. Når du først har funnet passformen som passer din hund, kan du strikke hvilken som helst av genserne i boken – uten å starte helt på nytt hver gang.",
     },
     {
         title: "Et levende fellesskap",
-        text: "Facebook-gruppen gjør boken større enn bare en bok. Her deles bilder, erfaringer, tips og masse strikkeglede.",
+        text: "HOTDOG hundestrikk på Facebook er en gruppe hvor vi deler bilder av hundene våre med (og uten) genser, inspirasjon, tips og masse strikkeglede! Alle gensere er velkommen her, ikke bare HOTDOG-gensere.",
+    },
+
+    {
+        title: "Steg for steg",
+        text: "Basisoppskriften finnes også som en egen steg-for-steg-variant med bilder for deg som ønsker litt ekstra veiledning.",
     },
 ];
 
@@ -48,9 +53,7 @@ const galleryItems = [
     <main>
         <Hero
             eyebrow='Strikkeoppskrifter til hund'
-            title='Varme gensere for kalde hunder'
-            highlight='gensere'
-            text='En sjarmerende og gjennomført bok for deg som vil strikke plagg med personlighet, passform og varme.'
+            text='En sjarmerende og gjennomført bok for deg som vil strikke plagg med personlighet, gode passform og varme. Oppdag HOTDOG-universet – og bli med i et fellesskap fullt av hunder, ull og stor skaperglede.'
             imageSrc='/book-cover.jpg'
             imageAlt='Forsiden på HOTDOG Hundestrikk'
             primaryHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
@@ -59,12 +62,13 @@ const galleryItems = [
             secondaryHref='https://www.facebook.com/groups/653163954334182'
             secondaryLabel='Bli med i Facebook-gruppen'
             secondaryNewTab={true}
+            badgeText='Strikket med kjærlighet'
         />
 
         <FeatureList
             eyebrow='Hvorfor folk elsker HOTDOG'
             title='Mer enn bare oppskrifter'
-            text='Dette handler ikke bare om masker og mønster. Det handler om å lage noe varmt, morsomt og personlig til en bestevenn med pels og hovedrolleenergi.'
+            text='Dette handler ikke bare om masker og mønster. Det handler om å lage noe varmt, morsomt og personlig til en bestevenn med pels.'
             items={features}
         />
         <VideoSection
@@ -74,11 +78,11 @@ const galleryItems = [
             src='/video.mp4'
         />
         <PartnerSection
-            eyebrow='Samarbeid'
+            eyebrow='Bestill ferdig strikket genser!'
             title='Linns Ullunivers'
             text='For deg som elsker hundegensere, men ikke nødvendigvis elsker å telle masker en tirsdag kveld.'
             name='Linns Ullunivers'
-            description='Jeg samarbeider med Linn, som strikker gensere fra universet rundt HOTDOG. Det gjør at også du som ikke strikker selv kan få tak i varme og fine plagg til hunden din.'
+            description='Kan du ikke strikke selv, eller kanskje tiden ikke strekker til? Fortvil ikke! Du kan bestille gensere etter hundens mål hos Linns ullunivers! Hun er teststrikker til neste bok og kjenner disse oppskriftene ut og inn. Hun strikker etter hundens mål og har mange fornøyde kunder —både med og uten pels! Du finner henne på FB og Instagram'
             href='https://www.facebook.com/profile.php?id=61577422055000'
             linkLabel='Besøk Linns Ullunivers'
             imageSrc='/linnhund.jpg'
@@ -91,7 +95,9 @@ const galleryItems = [
             text='I Facebook-gruppen deles gensere, erfaringer, spørsmål og bilder av hunder som ser ut som de vet at de er hovedpersonen. Det gjør hele HOTDOG-universet levende.'
             items={galleryItems}
             ctaHref='https://www.facebook.com/groups/653163954334182'
-            ctaLabel='Bli med i Facebook-gruppen'
+            ctaLabel='Bli med i Facebook-gruppa'
+            secondaryCtaHref='https://www.instagram.com/hotdog_hundestrikk/'
+            secondaryCtaLabel='Følg på Instagram'
         />
 
         <CtaBanner
@@ -109,6 +115,7 @@ const galleryItems = [
         text='En varm og gjennomført bok for strikkeglade hundemennesker.'
         shopHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
         facebookHref='https://www.facebook.com/groups/653163954334182'
+        instagramHref='https://www.instagram.com/hotdog_hundestrikk/'
         partnerHref='https://www.facebook.com/profile.php?id=61577422055000'
     />
 </BaseLayout>

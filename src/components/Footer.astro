@@ -3,6 +3,7 @@ interface Props {
     brand?: string;
     text?: string;
     facebookHref?: string;
+    instagramHref?: string;
     shopHref?: string;
     partnerHref?: string;
 }
@@ -11,6 +12,7 @@ const {
     brand = "HOTDOG Hundestrikk",
     text = "Varme gensere for kalde hunder.",
     facebookHref,
+    instagramHref,
     shopHref,
     partnerHref,
 } = Astro.props;
@@ -46,6 +48,18 @@ const year = new Date().getFullYear();
                         rel='noopener noreferrer'
                     >
                         Facebook-gruppe
+                    </a>
+                )
+            }
+
+            {
+                instagramHref && (
+                    <a
+                        href={instagramHref}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                    >
+                        Følg på Instagram
                     </a>
                 )
             }

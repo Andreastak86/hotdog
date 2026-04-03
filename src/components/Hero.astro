@@ -1,8 +1,6 @@
 ---
 interface Props {
     eyebrow?: string;
-    title: string;
-    highlight?: string;
     text: string;
     imageSrc: string;
     imageAlt: string;
@@ -20,8 +18,6 @@ interface Props {
 
 const {
     eyebrow,
-    title,
-    highlight,
     text,
     imageSrc,
     imageAlt,
@@ -36,9 +32,6 @@ const {
 
     badgeText = "Strikket med kjærlighet",
 } = Astro.props;
-
-const titleParts =
-    highlight && title.includes(highlight) ? title.split(highlight) : null;
 ---
 
 <section class='hero'>
@@ -47,17 +40,10 @@ const titleParts =
             {eyebrow && <span class='eyebrow'>{eyebrow}</span>}
 
             <h1 class='hero__title'>
-                {
-                    titleParts ? (
-                        <>
-                            {titleParts[0]}
-                            <span class='accent'>{highlight}</span>
-                            {titleParts[1]}
-                        </>
-                    ) : (
-                        title
-                    )
-                }
+                <span class='hero__line hero__line--top'>Varme</span>
+                <span class='hero__line hero__line--accent'>gensere</span>
+                <span class='hero__line hero__line--for'>for</span>
+                <span class='hero__line hero__line--bottom'>kalde hunder</span>
             </h1>
 
             <p class='lead'>{text}</p>
