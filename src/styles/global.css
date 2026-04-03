@@ -168,10 +168,11 @@ select {
 
 .section-heading h2 {
     margin: 0 0 0.8rem;
-    font-family: "Newsreader", serif;
-    font-size: clamp(2.2rem, 5vw, 4.4rem);
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
 }
 
@@ -366,6 +367,8 @@ select {
     margin-top: 1.5rem;
     display: flex;
     justify-content: flex-start;
+    gap: 0.8rem;
+    flex-wrap: wrap;
 }
 
 /* CTA banner */
