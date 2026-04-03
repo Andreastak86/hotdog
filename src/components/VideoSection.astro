@@ -1,0 +1,22 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+interface Props {
+    eyebrow?: string;
+    title: string;
+    text?: string;
+    src: string;
+}
+
+const { eyebrow, title, text, src } = Astro.props;
+---
+
+<section class='section'>
+    <div class='container'>
+        <SectionHeading eyebrow={eyebrow} title={title} text={text} />
+
+        <div class='video-wrapper'>
+            <video src={src} autoplay muted loop playsinline controls></video>
+        </div>
+    </div>
+</section>

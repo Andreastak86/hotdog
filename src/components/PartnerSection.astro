@@ -1,0 +1,67 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+interface Props {
+    eyebrow?: string;
+    title: string;
+    text?: string;
+    name: string;
+    description: string;
+    href: string;
+    linkLabel?: string;
+    imageSrc?: string;
+    imageAlt?: string;
+    openInNewTab?: boolean;
+}
+
+const {
+    eyebrow,
+    title,
+    text,
+    name,
+    description,
+    href,
+    linkLabel = "Besøk siden",
+    imageSrc,
+    imageAlt = "",
+    openInNewTab = true,
+} = Astro.props;
+---
+
+<section class='section'>
+    <div class='container'>
+        <div class='partner-section'>
+            <div class='partner-section__content'>
+                <SectionHeading eyebrow={eyebrow} title={title} text={text} />
+
+                <div class='partner-card'>
+                    <p class='partner-card__name'>{name}</p>
+                    <p class='partner-card__description'>{description}</p>
+
+                    <a
+                        href={href}
+                        class='button button--primary'
+                        target={openInNewTab ? "_blank" : undefined}
+                        rel={openInNewTab ? "noopener noreferrer" : undefined}
+                    >
+                        {linkLabel}
+                    </a>
+                </div>
+            </div>
+
+            {
+                imageSrc && (
+                    <div class='partner-section__visual'>
+                        <div class='partner-section__image-frame'>
+                            <img
+                                src={imageSrc}
+                                alt={imageAlt}
+                                class='partner-section__image'
+                            />
+                        </div>
+                    </div>
+                )
+            }
+        </div>
+    </div>
+</section>
