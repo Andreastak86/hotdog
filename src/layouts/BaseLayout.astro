@@ -4,11 +4,13 @@ import "../styles/global.css";
 interface Props {
     title?: string;
     description?: string;
+    canonical?: string;
 }
 
 const {
     title = "HOTDOG Hundestrikk",
     description = "Varme gensere for kalde hunder. Strikkeoppskrifter til hund og et levende fellesskap for strikkeglade hundemennesker.",
+    canonical = "https://hundegenser.no",
 } = Astro.props;
 ---
 
@@ -19,16 +21,46 @@ const {
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <title>{title}</title>
         <meta name='description' content={description} />
+        <meta name='robots' content='index, follow' />
+        <meta property='og:title' content={title} />
+        <meta property='og:description' content={description} />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content='https://hundegenser.no' />
+        <meta
+            property='og:image'
+            content='https://hundegenser.no/og-image.jpg'
+        />
+
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:title' content={title} />
+        <meta name='twitter:description' content={description} />
+        <meta
+            name='twitter:image'
+            content='https://hundegenser.no/og-image.jpg'
+        />
+        <link rel='canonical' href={canonical} />
+
+        <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
-        <link
-            href='https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700;6..72,800&family=Work+Sans:wght@400;500;600;700&display=swap'
-            rel='stylesheet'
-        />
         <link
             href='https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700;6..72,800&family=Playfair+Display:wght@700;800&family=Work+Sans:wght@400;500;600;700&display=swap'
             rel='stylesheet'
         />
+        <script type='application/ld+json'>
+            {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                "name": "HOTDOG Hundestrikk",
+                "description": "Strikkeoppskrifter til hund – varme gensere for kalde hunder",
+                "image": "https://hundegenser.no/book-cover.jpg",
+                "brand": {
+                    "@type": "Brand",
+                    "name": "HOTDOG"
+                }
+            }
+        </script>
     </head>
     <body>
         <slot />
