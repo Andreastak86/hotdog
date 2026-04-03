@@ -4,13 +4,15 @@ interface Props {
     text?: string;
     facebookHref?: string;
     shopHref?: string;
+    partnerHref?: string;
 }
 
 const {
-    brand = "HOTDOGG Hundestrikk",
+    brand = "HOTDOG Hundestrikk",
     text = "Varme gensere for kalde hunder.",
     facebookHref,
     shopHref,
+    partnerHref,
 } = Astro.props;
 
 const year = new Date().getFullYear();
@@ -44,6 +46,18 @@ const year = new Date().getFullYear();
                         rel='noopener noreferrer'
                     >
                         Facebook-gruppe
+                    </a>
+                )
+            }
+
+            {
+                partnerHref && (
+                    <a
+                        href={partnerHref}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                    >
+                        Linns Ullunivers
                     </a>
                 )
             }

@@ -552,3 +552,63 @@ select {
         gap: 0.5rem;
     }
 }
+.video-wrapper {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: black;
+}
+
+.video-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.partner-section {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.partner-card {
+    background: var(--surface-2);
+    border-radius: 24px;
+    padding: 1.6rem;
+    box-shadow: var(--shadow);
+}
+
+.partner-card__name {
+    margin: 0 0 0.5rem;
+    font-family: "Newsreader", serif;
+    font-size: 1.8rem;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.partner-card__description {
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.partner-section__image-frame {
+    background: var(--surface-2);
+    border-radius: 28px;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+}
+
+.partner-section__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+@media (max-width: 900px) {
+    .partner-section {
+        grid-template-columns: 1fr;
+    }
+}
