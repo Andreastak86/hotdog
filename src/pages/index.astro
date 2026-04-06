@@ -33,6 +33,7 @@ const galleryItems = [
     {
         src: "/dog2.png",
         alt: "Liten hund i strikket genser",
+        featured: true,
     },
 
     {
@@ -51,6 +52,26 @@ const galleryItems = [
     {
         src: "/dog7.png",
         alt: "Hund i lys genser",
+    },
+];
+
+const upcomingGalleryItems = [
+    {
+        src: "/dog10.png",
+        alt: "Hund i ny HOTDOG-genser fra kommende bok",
+    },
+    {
+        src: "/dog11.png",
+        alt: "Detalj av strikket hundegenser",
+        featured: true,
+    },
+    {
+        src: "/dog12.png",
+        alt: "Hund i fargerik genser",
+    },
+    {
+        src: "/dog13.png",
+        alt: "Hund i mønstret genser",
     },
 ];
 ---
@@ -114,6 +135,12 @@ const galleryItems = [
             text='HOTDOG vokser videre. En helt ny bok er nå på vei til forlag, med enda flere oppskrifter, historier og varme plagg til firbente favoritter. Den er ikke i salg ennå – men du kan bli med bak kulissene og følge reisen frem mot lansering.'
             secondaryHref='https://www.facebook.com/profile.php?id=61573781565853'
             secondaryLabel='Følg lanseringen'
+        />
+        <CommunityGallery
+            eyebrow='Et lite glimt av det som kommer'
+            title='Gensere fra den nye boken'
+            text='Her er noen av genserne som kommer i neste neste bok av HOTDOG. Flere modeller er på vei, og boken er ikke i salg ennå.'
+            items={upcomingGalleryItems}
         />
     </main>
     <Footer
