@@ -7,11 +7,17 @@ interface Props {
     text?: string;
     name: string;
     description: string;
-    href: string;
-    linkLabel?: string;
+
+    primaryHref: string;
+    primaryLabel?: string;
+    primaryNewTab?: boolean;
+
+    secondaryHref?: string;
+    secondaryLabel?: string;
+    secondaryNewTab?: boolean;
+
     imageSrc?: string;
     imageAlt?: string;
-    newTab?: boolean;
 }
 
 const {
@@ -20,11 +26,17 @@ const {
     text,
     name,
     description,
-    href,
-    linkLabel = "Besøk siden",
+
+    primaryHref,
+    primaryLabel = "Besøk siden",
+    primaryNewTab = true,
+
+    secondaryHref,
+    secondaryLabel,
+    secondaryNewTab = true,
+
     imageSrc,
     imageAlt = "",
-    newTab = true,
 } = Astro.props;
 ---
 
@@ -38,14 +50,37 @@ const {
                     <p class='partner-card__name'>{name}</p>
                     <p class='partner-card__description'>{description}</p>
 
-                    <a
-                        href={href}
-                        class='button button--primary'
-                        target={newTab ? "_blank" : undefined}
-                        rel={newTab ? "noopener noreferrer" : undefined}
-                    >
-                        {linkLabel}
-                    </a>
+                    <div class='partner-actions'>
+                        <a
+                            href={primaryHref}
+                            class='button button--primary'
+                            target={primaryNewTab ? "_blank" : undefined}
+                            rel={primaryNewTab
+                                ? "noopener noreferrer"
+                                : undefined}
+                        >
+                            {primaryLabel}
+                        </a>
+
+                        {
+                            secondaryHref && secondaryLabel && (
+                                <a
+                                    href={secondaryHref}
+                                    class='button button--secondary'
+                                    target={
+                                        secondaryNewTab ? "_blank" : undefined
+                                    }
+                                    rel={
+                                        secondaryNewTab
+                                            ? "noopener noreferrer"
+                                            : undefined
+                                    }
+                                >
+                                    {secondaryLabel}
+                                </a>
+                            )
+                        }
+                    </div>
                 </div>
             </div>
 

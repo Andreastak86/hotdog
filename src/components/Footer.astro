@@ -2,19 +2,25 @@
 interface Props {
     brand?: string;
     text?: string;
+
     facebookHref?: string;
     instagramHref?: string;
     shopHref?: string;
-    partnerHref?: string;
+
+    partnerFacebookHref?: string;
+    partnerInstagramHref?: string;
 }
 
 const {
     brand = "HOTDOG",
     text = "Varme gensere for kalde hunder.",
+
     facebookHref,
     instagramHref,
     shopHref,
-    partnerHref,
+
+    partnerFacebookHref,
+    partnerInstagramHref,
 } = Astro.props;
 
 const year = new Date().getFullYear();
@@ -65,14 +71,28 @@ const year = new Date().getFullYear();
             }
 
             {
-                partnerHref && (
-                    <a
-                        href={partnerHref}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                    >
-                        Linns Ullunivers
-                    </a>
+                (partnerFacebookHref || partnerInstagramHref) && (
+                    <>
+                        {partnerFacebookHref && (
+                            <a
+                                href={partnerFacebookHref}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
+                                Linns Ullunivers på Facebook
+                            </a>
+                        )}
+
+                        {partnerInstagramHref && (
+                            <a
+                                href={partnerInstagramHref}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
+                                Linns Ullunivers på Instagram
+                            </a>
+                        )}
+                    </>
                 )
             }
         </nav>
