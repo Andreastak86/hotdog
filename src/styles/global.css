@@ -351,6 +351,12 @@ select {
     font-size: 1rem;
 }
 
+.feature-card__button {
+    margin-top: 1.25rem;
+    align-self: flex-start;
+    font-weight: 600;
+}
+
 /* Community gallery */
 
 .community-grid {

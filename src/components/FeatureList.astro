@@ -4,6 +4,8 @@ import SectionHeading from "./SectionHeading.astro";
 interface FeatureItem {
     title: string;
     text: string;
+    href?: string;
+    label?: string;
 }
 
 interface Props {
@@ -26,6 +28,17 @@ const { eyebrow, title, text, items = [] } = Astro.props;
                     <article class='feature-card'>
                         <h3>{item.title}</h3>
                         <p>{item.text}</p>
+
+                        {item.href && item.label && (
+                            <a
+                                href={item.href}
+                                class='button button--primary feature-card__button'
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
+                                {item.label}
+                            </a>
+                        )}
                     </article>
                 ))
             }
