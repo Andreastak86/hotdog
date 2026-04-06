@@ -12,6 +12,7 @@
     --max: 1200px;
 }
 
+/* Litt grunnmur først, så slipper vi mye småtull senere */
 *,
 *::before,
 *::after {
@@ -30,6 +31,7 @@ body {
     line-height: 1.6;
 }
 
+/* Overskrifter skal ha litt pondus, ikke bare eksistere */
 h1,
 h2,
 h3 {
@@ -67,7 +69,9 @@ select {
     background: var(--surface);
 }
 
-/* Header */
+/* =========================
+   Header
+   ========================= */
 
 .site-header {
     position: sticky;
@@ -104,7 +108,9 @@ select {
     color: var(--muted);
 }
 
-/* Buttons */
+/* =========================
+   Knapper
+   ========================= */
 
 .button {
     display: inline-flex;
@@ -119,7 +125,8 @@ select {
     transition:
         transform 160ms ease,
         opacity 160ms ease,
-        background 160ms ease;
+        background 160ms ease,
+        box-shadow 160ms ease;
 }
 
 .button:hover {
@@ -147,7 +154,27 @@ select {
     background: rgba(255, 255, 255, 0.18);
 }
 
-/* Shared text styles */
+.feature-card .button--primary {
+    color: white;
+    background: linear-gradient(135deg, var(--primary), var(--primary-2));
+}
+
+.feature-card__button {
+    margin-top: 1.25rem;
+    align-self: flex-start;
+    font-weight: 600;
+}
+
+.partner-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+/* =========================
+   Felles tekststiler
+   ========================= */
 
 .eyebrow {
     display: inline-block;
@@ -198,7 +225,9 @@ select {
     line-height: 1.7;
 }
 
-/* Hero */
+/* =========================
+   Hero
+   ========================= */
 
 .hero {
     padding: 5rem 0 4rem;
@@ -242,19 +271,18 @@ select {
     margin-bottom: -0.08em;
 }
 
+/* Den røde linja får lov å være litt hovedperson */
 .hero__line--accent {
     color: var(--primary);
     font-family: "DM Sans", sans-serif;
     font-weight: 800;
     line-height: 0.86;
     letter-spacing: -0.035em;
-
     margin-top: 0.15em;
     margin-bottom: 0.05em;
     margin-left: 0.4em;
-
-    display: inline-block; /* viktig for transform */
-    transform: rotate(-3deg); /* litt på skrå */
+    display: inline-block;
+    transform: rotate(-3deg);
 }
 
 .hero__line--for {
@@ -317,7 +345,9 @@ select {
     box-shadow: var(--shadow);
 }
 
-/* Feature list */
+/* =========================
+   Feature list
+   ========================= */
 
 .feature-grid {
     display: grid;
@@ -351,13 +381,9 @@ select {
     font-size: 1rem;
 }
 
-.feature-card__button {
-    margin-top: 1.25rem;
-    align-self: flex-start;
-    font-weight: 600;
-}
-
-/* Community gallery */
+/* =========================
+   Community gallery
+   ========================= */
 
 .community-grid {
     display: grid;
@@ -366,23 +392,50 @@ select {
     align-items: start;
 }
 
+/* Litt liv i kortene. Hvis alt står helt militærrett blir det fort veldig katalog */
 .community-card {
     margin: 0;
     overflow: hidden;
     border-radius: 22px;
     background: var(--surface-2);
     box-shadow: var(--shadow);
-    transition: transform 200ms ease;
+    transition:
+        transform 220ms ease,
+        box-shadow 220ms ease;
 }
 
 .community-card img {
     width: 100%;
     height: auto;
     display: block;
+    transition: transform 300ms ease;
 }
 
 .community-card--featured {
     grid-column: span 2;
+}
+
+/* Litt kontrollert kaos. Nok sprell til å føles levende, ikke nok til å se ut som noen mistet gridet */
+.community-card:nth-child(2) {
+    transform: rotate(-1.5deg);
+}
+
+.community-card:nth-child(3) {
+    transform: rotate(1.5deg);
+}
+
+.community-card:nth-child(4) {
+    transform: rotate(-1deg);
+}
+
+/* Når man hovrer skal kortene rette seg litt opp og late som de har orden i livet */
+.community-card:hover {
+    transform: translateY(-6px) rotate(0deg) scale(1.02);
+    box-shadow: 0 25px 60px rgba(28, 27, 27, 0.1);
+}
+
+.community-card:hover img {
+    transform: scale(1.03);
 }
 
 .community-actions {
@@ -392,18 +445,16 @@ select {
     gap: 0.8rem;
     flex-wrap: wrap;
 }
-.community-card:nth-child(2) {
-    transform: rotate(-1.5deg);
+
+/* Ny bok-galleriet får egne regler.
+    */
+.community-gallery--upcoming .community-grid {
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.community-card:nth-child(3) {
-    transform: rotate(1.5deg);
-}
-.community-card:hover {
-    transform: translateY(-4px) scale(1.02);
-}
-
-/* CTA banner */
+/* =========================
+   CTA banner
+   ========================= */
 
 .cta-banner {
     display: grid;
@@ -439,11 +490,13 @@ select {
     display: flex;
     flex-wrap: wrap;
     gap: 0.8rem;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
-/* Footer */
+/* =========================
+   Footer
+   ========================= */
 
 .site-footer {
     padding: 4rem 0 2rem;
@@ -502,7 +555,9 @@ select {
     color: var(--muted);
 }
 
-/* Video section */
+/* =========================
+   Video section
+   ========================= */
 
 .video-wrapper {
     border-radius: 24px;
@@ -517,7 +572,9 @@ select {
     display: block;
 }
 
-/* Partner section */
+/* =========================
+   Partner section
+   ========================= */
 
 .partner-section {
     display: grid;
@@ -563,13 +620,9 @@ select {
     object-fit: cover;
 }
 
-.partner-actions {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-}
-/* Optional utility styles */
+/* =========================
+   Litt diverse godsaker
+   ========================= */
 
 .book-grid {
     display: grid;
@@ -607,7 +660,9 @@ select {
     font-size: 1.3rem;
 }
 
-/* Responsive */
+/* =========================
+   Responsivt
+   ========================= */
 
 @media (max-width: 900px) {
     .hero {
@@ -641,6 +696,34 @@ select {
 
     .community-card img {
         aspect-ratio: auto;
+    }
+
+    /* På mobil trenger vi mindre sprell og mer oversikt.
+       Hunder i genser skal synes, ikke gjemmes i layout-jazz. */
+    .community-card:nth-child(2),
+    .community-card:nth-child(3),
+    .community-card:nth-child(4) {
+        transform: none;
+    }
+
+    .community-card:hover {
+        transform: translateY(-3px) scale(1.01);
+    }
+
+    /* Ny bok-galleriet får 2x2 på mobil så alle bildene faktisk synes med en gang */
+    .community-gallery--upcoming .community-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .community-gallery--upcoming .community-card--featured {
+        grid-column: auto;
+    }
+
+    .community-gallery--upcoming .community-card img {
+        width: 100%;
+        height: auto;
+        display: block;
     }
 
     .cta-banner {
