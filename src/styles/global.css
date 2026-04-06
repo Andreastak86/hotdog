@@ -372,6 +372,7 @@ select {
     border-radius: 22px;
     background: var(--surface-2);
     box-shadow: var(--shadow);
+    transition: transform 200ms ease;
 }
 
 .community-card img {
@@ -390,6 +391,16 @@ select {
     justify-content: flex-start;
     gap: 0.8rem;
     flex-wrap: wrap;
+}
+.community-card:nth-child(2) {
+    transform: rotate(-1.5deg);
+}
+
+.community-card:nth-child(3) {
+    transform: rotate(1.5deg);
+}
+.community-card:hover {
+    transform: translateY(-4px) scale(1.02);
 }
 
 /* CTA banner */
