@@ -3,8 +3,8 @@ interface Props {
     eyebrow?: string;
     title: string;
     text: string;
-    primaryHref: string;
-    primaryLabel: string;
+    primaryHref?: string;
+    primaryLabel?: string;
     secondaryHref?: string;
     secondaryLabel?: string;
 }
@@ -18,6 +18,10 @@ const {
     secondaryHref,
     secondaryLabel,
 } = Astro.props;
+
+const hasPrimary = primaryHref && primaryLabel;
+const hasSecondary = secondaryHref && secondaryLabel;
+const hasActions = hasPrimary || hasSecondary;
 ---
 
 <section class='section'>
@@ -33,22 +37,29 @@ const {
                 <p>{text}</p>
             </div>
 
-            <div class='cta-actions'>
-                <a href={primaryHref} class='button button--primary'>
-                    {primaryLabel}
-                </a>
+            {
+                hasActions && (
+                    <div class='cta-actions'>
+                        {hasPrimary && (
+                            <a
+                                href={primaryHref}
+                                class='button button--primary'
+                            >
+                                {primaryLabel}
+                            </a>
+                        )}
 
-                {
-                    secondaryHref && secondaryLabel && (
-                        <a
-                            href={secondaryHref}
-                            class='button button--secondary button--secondary-light'
-                        >
-                            {secondaryLabel}
-                        </a>
-                    )
-                }
-            </div>
+                        {hasSecondary && (
+                            <a
+                                href={secondaryHref}
+                                class='button button--secondary button--secondary-light'
+                            >
+                                {secondaryLabel}
+                            </a>
+                        )}
+                    </div>
+                )
+            }
         </div>
     </div>
 </section>
