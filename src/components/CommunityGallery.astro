@@ -14,8 +14,10 @@ interface Props {
     items: GalleryItem[];
     ctaHref?: string;
     ctaLabel?: string;
+    ctaNewTab?: boolean;
     secondaryCtaHref?: string;
     secondaryCtaLabel?: string;
+    secondaryCtaNewTab?: boolean;
 }
 
 const {
@@ -25,8 +27,10 @@ const {
     items = [],
     ctaHref,
     ctaLabel,
+    ctaNewTab = true,
     secondaryCtaHref,
     secondaryCtaLabel,
+    secondaryCtaNewTab = true,
 } = Astro.props;
 ---
 
@@ -56,8 +60,8 @@ const {
                         <a
                             href={ctaHref}
                             class='button button--secondary'
-                            target='_blank'
-                            rel='noopener noreferrer'
+                            target={ctaNewTab ? "_blank" : undefined}
+                            rel={ctaNewTab ? "noopener noreferrer" : undefined}
                         >
                             {ctaLabel}
                         </a>
@@ -67,8 +71,12 @@ const {
                         <a
                             href={secondaryCtaHref}
                             class='button button--secondary'
-                            target='_blank'
-                            rel='noopener noreferrer'
+                            target={secondaryCtaNewTab ? "_blank" : undefined}
+                            rel={
+                                secondaryCtaNewTab
+                                    ? "noopener noreferrer"
+                                    : undefined
+                            }
                         >
                             {secondaryCtaLabel}
                         </a>

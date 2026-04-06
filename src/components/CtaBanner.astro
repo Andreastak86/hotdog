@@ -5,8 +5,10 @@ interface Props {
     text: string;
     primaryHref?: string;
     primaryLabel?: string;
+    primaryNewTab?: boolean;
     secondaryHref?: string;
     secondaryLabel?: string;
+    secondaryNewTab?: boolean;
 }
 
 const {
@@ -15,8 +17,10 @@ const {
     text,
     primaryHref,
     primaryLabel,
+    primaryNewTab = true,
     secondaryHref,
     secondaryLabel,
+    secondaryNewTab = true,
 } = Astro.props;
 
 const hasPrimary = primaryHref && primaryLabel;
@@ -44,6 +48,12 @@ const hasActions = hasPrimary || hasSecondary;
                             <a
                                 href={primaryHref}
                                 class='button button--primary'
+                                target={primaryNewTab ? "_blank" : undefined}
+                                rel={
+                                    primaryNewTab
+                                        ? "noopener noreferrer"
+                                        : undefined
+                                }
                             >
                                 {primaryLabel}
                             </a>
@@ -53,6 +63,12 @@ const hasActions = hasPrimary || hasSecondary;
                             <a
                                 href={secondaryHref}
                                 class='button button--secondary button--secondary-light'
+                                target={secondaryNewTab ? "_blank" : undefined}
+                                rel={
+                                    secondaryNewTab
+                                        ? "noopener noreferrer"
+                                        : undefined
+                                }
                             >
                                 {secondaryLabel}
                             </a>

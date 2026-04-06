@@ -22,6 +22,7 @@ const features = [
         text: "HOTDOG hundestrikk på Facebook er en gruppe hvor vi deler bilder av hundene våre – med (og uten) genser, inspirasjon, tips og masse strikkeglede! Alle gensere er velkomne her, ikke bare HOTDOG-gensere.",
         href: "https://www.facebook.com/groups/653163954334182",
         label: "Bli med i Facebook-gruppen",
+        newTab: true,
     },
 ];
 
@@ -35,7 +36,6 @@ const galleryItems = [
         alt: "Liten hund i strikket genser",
         featured: true,
     },
-
     {
         src: "/dog4.png",
         alt: "Hund i lys genser",
@@ -44,7 +44,6 @@ const galleryItems = [
         src: "/dog9.png",
         alt: "Hund i lys genser",
     },
-
     {
         src: "/dog6.png",
         alt: "Hund i lys genser",
@@ -101,12 +100,14 @@ const upcomingGalleryItems = [
             text='Dette handler ikke bare om masker og mønster. Det handler om å lage noe varmt, morsomt og personlig til en bestevenn med pels.'
             items={features}
         />
+
         <VideoSection
             eyebrow='Fra neste HOTDOG-bok'
             title='Se hundene i aksjon'
             text='Oppskriftene lever ikke bare på papir – de brukes hver dag av hunder som både fryser og fortjener å se bra ut.'
             src='/video.mp4'
         />
+
         <PartnerSection
             eyebrow='Bestill ferdig strikket genser!'
             title='Linns Ullunivers'
@@ -115,6 +116,7 @@ const upcomingGalleryItems = [
             description='Kan du ikke strikke selv, eller kanskje tiden ikke strekker til? Fortvil ikke! Du kan bestille gensere etter hundens mål hos Linns ullunivers! Hun er teststrikker til neste bok og kjenner disse oppskriftene ut og inn. Hun strikker etter hundens mål og har mange fornøyde kunder —både med og uten pels! Du finner henne på FB og Instagram'
             href='https://www.facebook.com/profile.php?id=61577422055000'
             linkLabel='Besøk Linns Ullunivers på Facebook'
+            newTab={true}
             imageSrc='/linnhund.jpg'
             imageAlt='Hund i håndstrikket genser fra Linns Ullunivers'
         />
@@ -126,16 +128,21 @@ const upcomingGalleryItems = [
             items={galleryItems}
             ctaHref='https://www.facebook.com/groups/653163954334182'
             ctaLabel='Bli med i Facebook-gruppen'
+            ctaNewTab={true}
             secondaryCtaHref='https://www.instagram.com/hotdog_hundestrikk/'
             secondaryCtaLabel='Følg på Instagram'
+            secondaryCtaNewTab={true}
         />
+
         <CtaBanner
             eyebrow='Ny bok i høst'
             title='En ny bok er på vei!'
             text='HOTDOG vokser videre. En helt ny bok er nå på vei til forlag, med enda flere oppskrifter, historier og varme plagg til firbente favoritter. Den er ikke i salg ennå – men du kan bli med bak kulissene og følge reisen frem mot lansering.'
-            secondaryHref='https://www.facebook.com/profile.php?id=61573781565853'
+            secondaryHref='https://www.facebook.com/groups/653163954334182'
             secondaryLabel='Følg lanseringen'
+            secondaryNewTab={true}
         />
+
         <CommunityGallery
             eyebrow='Et lite glimt av det som kommer'
             title='Gensere fra den nye boken'
@@ -143,6 +150,7 @@ const upcomingGalleryItems = [
             items={upcomingGalleryItems}
         />
     </main>
+
     <Footer
         brand='HOTDOG av Elin Takvam'
         text='En varm og gjennomført bok for strikkeglade hundemennesker.'
