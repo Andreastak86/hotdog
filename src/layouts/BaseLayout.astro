@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 
 interface Props {
     title?: string;
@@ -17,6 +18,7 @@ const {
 <!doctype html>
 <html lang='no'>
     <head>
+        <Analytics />
         <meta charset='UTF-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
