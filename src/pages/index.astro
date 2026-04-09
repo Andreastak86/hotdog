@@ -6,6 +6,7 @@ import CommunityGallery from "../components/CommunityGallery.astro";
 import CtaBanner from "../components/CtaBanner.astro";
 import PartnerSection from "../components/PartnerSection.astro";
 import VideoSection from "../components/VideoSection.astro";
+import PhotographerSection from "../components/PhotographerSection.astro";
 import Footer from "../components/Footer.astro";
 
 const features = [
@@ -77,6 +78,36 @@ const upcomingGalleryItems = [
         alt: "Hund i mønstret genser",
     },
 ];
+
+const instagramUrl = "https://www.instagram.com/hundeneilef";
+const phone = "99550166";
+
+const smsMessage = encodeURIComponent(
+    "Hei! Jeg fant deg via Hotdog.no, og er interessert i fotografering av hunden min 🐶",
+);
+
+const photographerPhotos = [
+    {
+        src: "/photographer/photodog1.png",
+        alt: "Hund portrett fotografert utendørs",
+        rotation: "left",
+    },
+    {
+        src: "/photographer/photodog2.png",
+        alt: "Hund fotografert i naturlig lys",
+        rotation: "right",
+    },
+    {
+        src: "/photographer/photodog3.png",
+        alt: "Nærbilde av hund tatt av fotograf",
+        rotation: "left-soft",
+    },
+    {
+        src: "/photographer/photodog4.png",
+        alt: "Hundeportrait med rolig bakgrunn",
+        rotation: "right-soft",
+    },
+];
 ---
 
 <BaseLayout
@@ -124,6 +155,16 @@ const upcomingGalleryItems = [
             secondaryLabel='Instagram'
             imageSrc='/linnhund.jpg'
             imageAlt='Hund i håndstrikket genser fra Linns Ullunivers'
+        />
+
+        <PhotographerSection
+            eyebrow='Fanget med kjærlighet'
+            title='Forevig din firbeinte bestevenn'
+            lead='Ønsker du å forevige pelsklingen din med profesjonelle og varme bilder fulle av personlighet?'
+            text='Nora Egenæs er en dyktig hobbyfotograf med base nær Oslo, og har en egen evne til å fange det lille ekstra – blikket, uttrykket og sjarmen som gjør hunden din helt unik. Hun bidrar også med bilder til den neste HOTDOG-boken, og vet virkelig hvordan hun får frem det beste i hvert eneste motiv. Send henne en melding og hør om hun kan forevige din firbeinte bestevenn.'
+            instagramHref={instagramUrl}
+            messageHref={`sms:${phone}?body=${smsMessage}`}
+            photos={photographerPhotos}
         />
 
         <CommunityGallery

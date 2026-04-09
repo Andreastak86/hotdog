@@ -1,0 +1,89 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+interface PhotoItem {
+    src: string;
+    alt: string;
+    rotation?: string;
+}
+
+interface Props {
+    eyebrow?: string;
+    title: string;
+    lead?: string;
+    text: string;
+    instagramHref: string;
+    instagramLabel?: string;
+    messageHref: string;
+    messageLabel?: string;
+    photos: PhotoItem[];
+}
+
+const {
+    eyebrow,
+    title,
+    lead,
+    text,
+    instagramHref,
+    instagramLabel = "Se mer på Instagram",
+    messageHref,
+    messageLabel = "Send melding til Nora",
+    photos = [],
+} = Astro.props;
+---
+
+<section
+    class='section photographer-section'
+    aria-labelledby='photographer-title'
+>
+    <div class='container photographer-section__inner'>
+        <div class='photographer-section__content'>
+            <SectionHeading eyebrow={eyebrow} title={title} />
+
+            {lead && <p class='photographer-section__lead'>{lead}</p>}
+
+            <div class='photographer-card-box'>
+                <p class='photographer-section__text'>{text}</p>
+
+                <div class='photographer-section__actions'>
+                    <a
+                        href={instagramHref}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        class='button button--secondary'
+                    >
+                        {instagramLabel}
+                    </a>
+
+                    <a href={messageHref} class='button button--primary'>
+                        {messageLabel}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class='photographer-section__gallery'
+            aria-label='Bilder tatt av fotografen'
+        >
+            {
+                photos.map((photo, index) => (
+                    <figure
+                        class:list={[
+                            "photographer-card",
+                            photo.rotation &&
+                                `photographer-card--${photo.rotation}`,
+                        ]}
+                    >
+                        <img
+                            src={photo.src}
+                            alt={photo.alt}
+                            loading={index === 0 ? "eager" : "lazy"}
+                            class='photographer-card__image'
+                        />
+                    </figure>
+                ))
+            }
+        </div>
+    </div>
+</section>
