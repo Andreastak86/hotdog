@@ -446,8 +446,7 @@ select {
     flex-wrap: wrap;
 }
 
-/* Ny bok-galleriet får egne regler.
-    */
+/* Ny bok-galleriet får egne regler. */
 .community-gallery--upcoming .community-grid {
     grid-template-columns: repeat(3, 1fr);
 }
@@ -634,7 +633,7 @@ select {
 }
 
 /* =========================
-  Photographer section 
+   Photographer section
    ========================= */
 
 .photographer-section__inner {
@@ -689,8 +688,10 @@ select {
 }
 
 .photographer-card {
+    position: relative;
     margin: 0;
     padding: 0.6rem;
+    aspect-ratio: 4 / 5.6;
     border-radius: 28px;
     background: rgba(255, 255, 255, 0.78);
     box-shadow:
@@ -701,7 +702,6 @@ select {
         box-shadow 220ms ease;
     overflow: hidden;
 }
-
 .photographer-card:hover {
     transform: rotate(0deg) translateY(-4px) scale(1.01);
     box-shadow:
@@ -712,9 +712,9 @@ select {
 .photographer-card__image {
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
+    height: 100%;
     object-fit: cover;
+    object-position: center 10%;
     border-radius: 22px;
 }
 
@@ -867,6 +867,7 @@ select {
     .site-footer__nav {
         gap: 0.5rem;
     }
+
     .photographer-section__inner {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -876,6 +877,7 @@ select {
         max-width: none;
     }
 }
+
 @media (max-width: 640px) {
     .photographer-section__gallery {
         gap: 0.75rem;
@@ -888,6 +890,7 @@ select {
 
     .photographer-card__image {
         border-radius: 16px;
+        object-position: center 8%;
     }
 
     .photographer-section__actions {
@@ -898,6 +901,7 @@ select {
     .photographer-section__actions .button {
         width: 100%;
     }
+
     .site-footer__bottom {
         flex-direction: column;
         align-items: flex-start;
