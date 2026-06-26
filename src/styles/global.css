@@ -457,7 +457,7 @@ select {
 
 .cta-banner {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1fr 280px;
     gap: 2rem;
     align-items: center;
     background: var(--text);
@@ -491,6 +491,42 @@ select {
     gap: 0.8rem;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 1.5rem;
+}
+
+.cta-banner__visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1.5rem;
+}
+
+.cta-banner__card {
+    position: relative;
+    padding: 0.75rem;
+    background: #efeceb;
+    border-radius: 24px;
+    width: 100%;
+}
+
+.cta-banner__card-inner {
+    background: var(--surface-2);
+    border-radius: 18px;
+    padding: 0.75rem;
+    box-shadow: var(--shadow);
+    transform: rotate(-2deg);
+}
+
+.cta-banner__image-link {
+    display: block;
+}
+
+.cta-banner__image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
 }
 
 /* =========================
@@ -843,6 +879,14 @@ select {
     .cta-banner {
         padding: 1.5rem;
         border-radius: 28px;
+    }
+
+    .cta-banner__visual {
+        justify-content: flex-start;
+    }
+
+    .cta-banner__card {
+        max-width: 180px;
     }
 
     .nav {

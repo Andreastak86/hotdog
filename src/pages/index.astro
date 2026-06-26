@@ -7,6 +7,7 @@ import CtaBanner from "../components/CtaBanner.astro";
 import PartnerSection from "../components/PartnerSection.astro";
 import VideoSection from "../components/VideoSection.astro";
 import PhotographerSection from "../components/PhotographerSection.astro";
+import BookModal from "../components/BookModal.astro";
 import Footer from "../components/Footer.astro";
 
 const features = [
@@ -185,6 +186,9 @@ const photographerPhotos = [
             eyebrow='Ny bok i høst'
             title='En ny bok er på vei!'
             text='HOTDOG vokser videre. En helt ny bok er nå på vei til forlag, med enda flere oppskrifter, historier og varme plagg til firbente favoritter. Den er ikke i salg ennå – men du kan bli med bak kulissene og følge reisen frem mot lansering.'
+            primaryHref='https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-9788234729690'
+            primaryLabel='Forhåndsbestill bok i dag!'
+            primaryNewTab={true}
             secondaryHref='https://www.facebook.com/groups/653163954334182'
             secondaryLabel='Følg lanseringen'
             secondaryNewTab={true}
@@ -198,6 +202,8 @@ const photographerPhotos = [
             items={upcomingGalleryItems}
         />
     </main>
+
+    <BookModal />
 
     <Footer
         brand='HOTDOG av Elin Takvam'

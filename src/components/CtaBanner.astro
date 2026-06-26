@@ -39,43 +39,72 @@ const hasActions = hasPrimary || hasSecondary;
                 }
                 <h2>{title}</h2>
                 <p>{text}</p>
+
+                {
+                    hasActions && (
+                        <div class='cta-actions'>
+                            {hasPrimary && (
+                                <a
+                                    href={primaryHref}
+                                    class='button button--primary'
+                                    target={primaryNewTab ? "_blank" : undefined}
+                                    rel={
+                                        primaryNewTab
+                                            ? "noopener noreferrer"
+                                            : undefined
+                                    }
+                                >
+                                    {primaryLabel}
+                                </a>
+                            )}
+
+                            {hasSecondary && (
+                                <a
+                                    href={secondaryHref}
+                                    class='button button--secondary button--secondary-light'
+                                    target={secondaryNewTab ? "_blank" : undefined}
+                                    rel={
+                                        secondaryNewTab
+                                            ? "noopener noreferrer"
+                                            : undefined
+                                    }
+                                >
+                                    {secondaryLabel}
+                                </a>
+                            )}
+                        </div>
+                    )
+                }
             </div>
 
-            {
-                hasActions && (
-                    <div class='cta-actions'>
-                        {hasPrimary && (
+            <div class='cta-banner__visual'>
+                <div class='cta-banner__card'>
+                    <div class='cta-banner__card-inner'>
+                        {hasPrimary ? (
                             <a
                                 href={primaryHref}
-                                class='button button--primary'
                                 target={primaryNewTab ? "_blank" : undefined}
-                                rel={
-                                    primaryNewTab
-                                        ? "noopener noreferrer"
-                                        : undefined
-                                }
+                                rel={primaryNewTab ? "noopener noreferrer" : undefined}
+                                class='cta-banner__image-link'
                             >
-                                {primaryLabel}
+                                <img
+                                    src='/book-cover-2.jpg'
+                                    alt='HOTDOG Hundestrikk'
+                                    class='cta-banner__image'
+                                    loading='lazy'
+                                />
                             </a>
-                        )}
-
-                        {hasSecondary && (
-                            <a
-                                href={secondaryHref}
-                                class='button button--secondary button--secondary-light'
-                                target={secondaryNewTab ? "_blank" : undefined}
-                                rel={
-                                    secondaryNewTab
-                                        ? "noopener noreferrer"
-                                        : undefined
-                                }
-                            >
-                                {secondaryLabel}
-                            </a>
+                        ) : (
+                            <img
+                                src='/book-cover-2.jpg'
+                                alt='HOTDOG Hundestrikk'
+                                class='cta-banner__image'
+                                loading='lazy'
+                            />
                         )}
                     </div>
-                )
-            }
+                </div>
+            </div>
         </div>
     </div>
 </section>
