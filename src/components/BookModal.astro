@@ -35,7 +35,6 @@ const arkHref = 'https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-97
                 >
                     Forhåndsbestill boken i dag!
                 </a>
-                <button class='modal__later' id='modal-dismiss'>Kanskje senere</button>
             </div>
         </div>
     </div>
@@ -158,22 +157,6 @@ const arkHref = 'https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-97
         align-items: center;
     }
 
-    .modal__later {
-        background: none;
-        border: none;
-        color: var(--muted);
-        font-size: 0.9rem;
-        cursor: pointer;
-        padding: 0.5rem 0.25rem;
-        text-decoration: underline;
-        text-underline-offset: 3px;
-        transition: color 160ms ease;
-    }
-
-    .modal__later:hover {
-        color: var(--text);
-    }
-
     @media (max-width: 600px) {
         .modal {
             grid-template-columns: 1fr;
@@ -217,7 +200,6 @@ const arkHref = 'https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-97
     }
 
     document.getElementById('modal-close')?.addEventListener('click', closeModal);
-    document.getElementById('modal-dismiss')?.addEventListener('click', closeModal);
     document.getElementById('modal-cta')?.addEventListener('click', closeModal);
     document.getElementById('modal-cta-image')?.addEventListener('click', closeModal);
 

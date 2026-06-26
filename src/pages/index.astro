@@ -99,7 +99,7 @@ const photographerPhotos = [
         rotation: "right",
     },
     {
-        src: "/photographer/teath.png",
+        src: "/photographer/photodog5.jpg",
         alt: "Nærbilde av hund tatt av fotograf",
         rotation: "left-soft",
     },
@@ -119,14 +119,19 @@ const photographerPhotos = [
         <Hero
             eyebrow='Strikkeoppskrifter til hund'
             text='En sjarmerende og gjennomført bok for deg som vil strikke plagg med personlighet, god passform og varme. Oppdag HOTDOG-universet – og bli med i et fellesskap fullt av hunder, ull og stor skaperglede.'
-            imageSrc='/book-cover.jpg'
-            imageAlt='Forsiden på HOTDOG Hundestrikk'
+            images={[
+                { src: '/book-cover.jpg', alt: 'HOTDOG Hundestrikk – bok 1' },
+                { src: '/book-cover-2.jpg', alt: 'HOTDOG Hundestrikk – bok 2' },
+            ]}
             primaryHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
             primaryLabel='Kjøp e-boken'
             primaryNewTab={true}
             secondaryHref='https://www.facebook.com/groups/653163954334182'
             secondaryLabel='Bli med i Facebook-gruppen'
             secondaryNewTab={true}
+            tertiaryHref='https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-9788234729690'
+            tertiaryLabel='Kjøp Hotdog – den store hundestrikkeboken'
+            tertiaryNewTab={true}
             badgeText='Strikket med kjærlighet'
         />
 
