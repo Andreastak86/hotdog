@@ -1,9 +1,15 @@
 ---
+interface ImageSlide {
+    src: string;
+    alt: string;
+}
+
 interface Props {
     eyebrow?: string;
     text: string;
-    imageSrc: string;
-    imageAlt: string;
+    imageSrc?: string;
+    imageAlt?: string;
+    images?: ImageSlide[];
 
     primaryHref: string;
     primaryLabel: string;
@@ -13,6 +19,10 @@ interface Props {
     secondaryLabel?: string;
     secondaryNewTab?: boolean;
 
+    tertiaryHref?: string;
+    tertiaryLabel?: string;
+    tertiaryNewTab?: boolean;
+
     badgeText?: string;
 }
 
@@ -20,7 +30,8 @@ const {
     eyebrow,
     text,
     imageSrc,
-    imageAlt,
+    imageAlt = "",
+    images,
 
     primaryHref,
     primaryLabel,
@@ -30,8 +41,20 @@ const {
     secondaryLabel,
     secondaryNewTab = false,
 
+    tertiaryHref,
+    tertiaryLabel,
+    tertiaryNewTab = true,
+
     badgeText = "Strikket med kjærlighet",
 } = Astro.props;
+
+const slides: ImageSlide[] = images?.length
+    ? images
+    : imageSrc
+      ? [{ src: imageSrc, alt: imageAlt }]
+      : [];
+
+const isCarousel = slides.length > 1;
 ---
 
 <section class='hero'>
@@ -74,13 +97,43 @@ const {
                         </a>
                     )
                 }
+
+                {
+                    tertiaryHref && tertiaryLabel && (
+                        <a
+                            href={tertiaryHref}
+                            class='button button--primary button--lg'
+                            target={tertiaryNewTab ? "_blank" : undefined}
+                            rel={
+                                tertiaryNewTab
+                                    ? "noopener noreferrer"
+                                    : undefined
+                            }
+                        >
+                            {tertiaryLabel}
+                        </a>
+                    )
+                }
             </div>
         </div>
 
         <div class='hero__visual'>
             <div class='hero__card'>
                 <div class='hero__card-inner'>
-                    <img src={imageSrc} alt={imageAlt} class='hero__image' />
+                    {isCarousel ? (
+                        <div class='hero__carousel'>
+                            {slides.map((slide, i) => (
+                                <img
+                                    src={slide.src}
+                                    alt={slide.alt}
+                                    class={`hero__image hero__carousel-img${i === 0 ? ' is-active' : ''}`}
+                                    loading={i === 0 ? 'eager' : 'lazy'}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <img src={slides[0]?.src} alt={slides[0]?.alt} class='hero__image' />
+                    )}
                 </div>
 
                 {badgeText && <div class='badge-note'>{badgeText}</div>}
@@ -88,3 +141,17 @@ const {
         </div>
     </div>
 </section>
+
+{isCarousel && (
+    <script>
+        const imgs = document.querySelectorAll<HTMLElement>('.hero__carousel-img');
+        if (imgs.length > 1) {
+            let current = 0;
+            setInterval(() => {
+                imgs[current].classList.remove('is-active');
+                current = (current + 1) % imgs.length;
+                imgs[current].classList.add('is-active');
+            }, 4000);
+        }
+    </script>
+)}

@@ -1,0 +1,213 @@
+---
+const arkHref = 'https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-9788234729690';
+---
+
+<div id='book-modal' class='modal-overlay' role='dialog' aria-modal='true' aria-label='Ny bok fra HOTDOG'>
+    <div class='modal'>
+        <button class='modal__close' id='modal-close' aria-label='Lukk'>&times;</button>
+
+        <div class='modal__visual'>
+            <a href={arkHref} target='_blank' rel='noopener noreferrer' class='modal__card' id='modal-cta-image'>
+                <div class='modal__card-inner'>
+                    <img
+                        src='/book-cover-2.jpg'
+                        alt='HOTDOG Hundestrikk – ny bok'
+                        class='modal__image'
+                    />
+                </div>
+            </a>
+        </div>
+
+        <div class='modal__content'>
+            <span class='eyebrow'>Ny bok i høst</span>
+            <h2>En ny bok er på vei!</h2>
+            <p>
+                Enda flere oppskrifter, historier og varme plagg til firbente favoritter —
+                og du kan allerede sikre deg ett eksemplar i dag.
+            </p>
+            <div class='modal__actions'>
+                <a
+                    href={arkHref}
+                    class='button button--primary'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    id='modal-cta'
+                >
+                    Forhåndsbestill boken i dag!
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(28, 27, 27, 0.55);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 300ms ease;
+    }
+
+    .modal-overlay.is-visible {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .modal {
+        background: var(--surface-2);
+        border-radius: 36px;
+        padding: 2.5rem;
+        max-width: 700px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 190px 1fr;
+        gap: 2.5rem;
+        align-items: center;
+        position: relative;
+        box-shadow: 0 32px 80px rgba(28, 27, 27, 0.22);
+        transform: translateY(16px) scale(0.97);
+        transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .modal-overlay.is-visible .modal {
+        transform: translateY(0) scale(1);
+    }
+
+    .modal__close {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        background: var(--surface);
+        color: var(--text);
+        font-size: 1.2rem;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .modal__close:hover {
+        background: #e8bcb5;
+        transform: scale(1.08);
+    }
+
+    .modal__card {
+        display: block;
+        padding: 0.75rem;
+        background: #efeceb;
+        border-radius: 24px;
+        text-decoration: none;
+        transition: transform 200ms ease;
+    }
+
+    .modal__card:hover {
+        transform: scale(1.02);
+    }
+
+    .modal__card-inner {
+        background: var(--surface-2);
+        border-radius: 18px;
+        padding: 0.75rem;
+        box-shadow: var(--shadow);
+        transform: rotate(-2deg);
+    }
+
+    .modal__image {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        display: block;
+    }
+
+    .modal__content h2 {
+        margin: 0.5rem 0 0.75rem;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+    }
+
+    .modal__content p {
+        color: var(--muted);
+        line-height: 1.7;
+        margin: 0 0 1.75rem;
+    }
+
+    .modal__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    @media (max-width: 600px) {
+        .modal {
+            grid-template-columns: 1fr;
+            padding: 1.75rem;
+            border-radius: 28px;
+            gap: 1.5rem;
+            max-height: 90dvh;
+            overflow-y: auto;
+        }
+
+        .modal__visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .modal__card {
+            max-width: 150px;
+        }
+
+        .modal__actions .button {
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
+
+<script>
+    const STORAGE_KEY = 'hotdog_modal_seen';
+    const today = new Date().toISOString().split('T')[0];
+
+    function closeModal() {
+        const overlay = document.getElementById('book-modal');
+        overlay?.classList.remove('is-visible');
+        localStorage.setItem(STORAGE_KEY, today);
+    }
+
+    if (localStorage.getItem(STORAGE_KEY) !== today) {
+        setTimeout(() => {
+            document.getElementById('book-modal')?.classList.add('is-visible');
+        }, 1000);
+    }
+
+    document.getElementById('modal-close')?.addEventListener('click', closeModal);
+    document.getElementById('modal-cta')?.addEventListener('click', closeModal);
+    document.getElementById('modal-cta-image')?.addEventListener('click', closeModal);
+
+    document.getElementById('book-modal')?.addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+</script>

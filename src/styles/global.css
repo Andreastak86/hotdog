@@ -154,6 +154,12 @@ select {
     background: rgba(255, 255, 255, 0.18);
 }
 
+.button--lg {
+    min-height: 58px;
+    padding: 0 2rem;
+    font-size: 1.05rem;
+}
+
 .feature-card .button--primary {
     color: white;
     background: linear-gradient(135deg, var(--primary), var(--primary-2));
@@ -326,6 +332,27 @@ select {
     object-fit: cover;
 }
 
+.hero__carousel {
+    position: relative;
+}
+
+.hero__carousel-img {
+    transition: opacity 700ms ease;
+}
+
+.hero__carousel-img:not(:first-child) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero__carousel-img:not(.is-active) {
+    opacity: 0;
+}
+
 .badge-note {
     position: absolute;
     left: -1rem;
@@ -446,8 +473,7 @@ select {
     flex-wrap: wrap;
 }
 
-/* Ny bok-galleriet får egne regler.
-    */
+/* Ny bok-galleriet får egne regler. */
 .community-gallery--upcoming .community-grid {
     grid-template-columns: repeat(3, 1fr);
 }
@@ -458,7 +484,7 @@ select {
 
 .cta-banner {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1fr 280px;
     gap: 2rem;
     align-items: center;
     background: var(--text);
@@ -492,6 +518,42 @@ select {
     gap: 0.8rem;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 1.5rem;
+}
+
+.cta-banner__visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1.5rem;
+}
+
+.cta-banner__card {
+    position: relative;
+    padding: 0.75rem;
+    background: #efeceb;
+    border-radius: 24px;
+    width: 100%;
+}
+
+.cta-banner__card-inner {
+    background: var(--surface-2);
+    border-radius: 18px;
+    padding: 0.75rem;
+    box-shadow: var(--shadow);
+    transform: rotate(-2deg);
+}
+
+.cta-banner__image-link {
+    display: block;
+}
+
+.cta-banner__image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
 }
 
 /* =========================
@@ -634,7 +696,7 @@ select {
 }
 
 /* =========================
-  Photographer section 
+   Photographer section
    ========================= */
 
 .photographer-section__inner {
@@ -689,8 +751,10 @@ select {
 }
 
 .photographer-card {
+    position: relative;
     margin: 0;
     padding: 0.6rem;
+    aspect-ratio: 4 / 5.6;
     border-radius: 28px;
     background: rgba(255, 255, 255, 0.78);
     box-shadow:
@@ -701,7 +765,6 @@ select {
         box-shadow 220ms ease;
     overflow: hidden;
 }
-
 .photographer-card:hover {
     transform: rotate(0deg) translateY(-4px) scale(1.01);
     box-shadow:
@@ -712,9 +775,9 @@ select {
 .photographer-card__image {
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
+    height: 100%;
     object-fit: cover;
+    object-position: center 10%;
     border-radius: 22px;
 }
 
@@ -845,6 +908,14 @@ select {
         border-radius: 28px;
     }
 
+    .cta-banner__visual {
+        justify-content: flex-start;
+    }
+
+    .cta-banner__card {
+        max-width: 180px;
+    }
+
     .nav {
         display: none;
     }
@@ -867,6 +938,7 @@ select {
     .site-footer__nav {
         gap: 0.5rem;
     }
+
     .photographer-section__inner {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -876,6 +948,7 @@ select {
         max-width: none;
     }
 }
+
 @media (max-width: 640px) {
     .photographer-section__gallery {
         gap: 0.75rem;
@@ -888,6 +961,7 @@ select {
 
     .photographer-card__image {
         border-radius: 16px;
+        object-position: center 8%;
     }
 
     .photographer-section__actions {
@@ -898,6 +972,7 @@ select {
     .photographer-section__actions .button {
         width: 100%;
     }
+
     .site-footer__bottom {
         flex-direction: column;
         align-items: flex-start;
