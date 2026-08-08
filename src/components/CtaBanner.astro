@@ -9,6 +9,9 @@ interface Props {
     secondaryHref?: string;
     secondaryLabel?: string;
     secondaryNewTab?: boolean;
+    tertiaryHref?: string;
+    tertiaryLabel?: string;
+    tertiaryNewTab?: boolean;
 }
 
 const {
@@ -21,11 +24,15 @@ const {
     secondaryHref,
     secondaryLabel,
     secondaryNewTab = true,
+    tertiaryHref,
+    tertiaryLabel,
+    tertiaryNewTab = true,
 } = Astro.props;
 
 const hasPrimary = primaryHref && primaryLabel;
 const hasSecondary = secondaryHref && secondaryLabel;
-const hasActions = hasPrimary || hasSecondary;
+const hasTertiary = tertiaryHref && tertiaryLabel;
+const hasActions = hasPrimary || hasSecondary || hasTertiary;
 ---
 
 <section class='section'>
@@ -70,6 +77,21 @@ const hasActions = hasPrimary || hasSecondary;
                                     }
                                 >
                                     {secondaryLabel}
+                                </a>
+                            )}
+
+                            {hasTertiary && (
+                                <a
+                                    href={tertiaryHref}
+                                    class='button button--secondary button--secondary-light'
+                                    target={tertiaryNewTab ? "_blank" : undefined}
+                                    rel={
+                                        tertiaryNewTab
+                                            ? "noopener noreferrer"
+                                            : undefined
+                                    }
+                                >
+                                    {tertiaryLabel}
                                 </a>
                             )}
                         </div>
