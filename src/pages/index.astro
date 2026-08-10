@@ -80,8 +80,10 @@ const upcomingGalleryItems = [
     },
 ];
 
-const norliHref = "https://www.norli.no/boker/hobby-og-fritid/strikk-hjem-og-hobby/handarbeid-og-strikking/hotdog-9788234729690";
-const bonnierHref = "https://bonnierforlag.no/products/hotdog-den-store-hundestrikkeboken";
+const norliHref =
+    "https://www.norli.no/boker/hobby-og-fritid/strikk-hjem-og-hobby/handarbeid-og-strikking/hotdog-9788234729690";
+const bonnierHref =
+    "https://bonnierforlag.no/products/hotdog-den-store-hundestrikkeboken";
 
 const instagramUrl = "https://www.instagram.com/hundeneilef";
 const phone = "99550166";
@@ -122,18 +124,16 @@ const photographerPhotos = [
         <Hero
             eyebrow='Strikkeoppskrifter til hund'
             text='En sjarmerende og gjennomført bok for deg som vil strikke plagg med personlighet, god passform og varme. Oppdag HOTDOG-universet – og bli med i et fellesskap fullt av hunder, ull og stor skaperglede.'
-            images={[
-                { src: '/book-cover.jpg', alt: 'HOTDOG Hundestrikk – bok 1' },
-                { src: '/book-cover-2.jpg', alt: 'HOTDOG Hundestrikk – bok 2' },
-            ]}
-            primaryHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
-            primaryLabel='Kjøp e-boken'
+            imageSrc='/book-cover-2.jpg'
+            imageAlt='HOTDOG Hundestrikk – den store hundestrikkeboken'
+            primaryHref='https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-9788234729690'
+            primaryLabel='Kjøp hos ARK'
             primaryNewTab={true}
-            secondaryHref='https://www.facebook.com/groups/653163954334182'
-            secondaryLabel='Bli med i Facebook-gruppen'
+            secondaryHref={norliHref}
+            secondaryLabel='Kjøp hos Norli'
             secondaryNewTab={true}
-            tertiaryHref='https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-9788234729690'
-            tertiaryLabel='Kjøp Hotdog – den store hundestrikkeboken'
+            tertiaryHref='https://www.facebook.com/groups/653163954334182'
+            tertiaryLabel='Bli med i Facebook-gruppen'
             tertiaryNewTab={true}
             badgeText='Strikket med kjærlighet'
         />
@@ -191,18 +191,14 @@ const photographerPhotos = [
         />
 
         <CtaBanner
-            eyebrow='Ny bok!'
-            title='Den nye boken er ute nå!'
-            text='HOTDOG vokser videre. Den nye boken, utgitt av Bonnier, er nå i salg i din lokale bokhandel, med enda flere oppskrifter, historier og varme plagg til firbente favoritter. Du finner den også hos ARK, Norli og Bonnier, eller der du ellers kjøper bøker på nett.'
-            primaryHref='https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-9788234729690'
-            primaryLabel='Kjøp hos ARK'
+            eyebrow='E-Bok'
+            title='HOTDOG - Varme gensere for kalde hunder'
+            text='Den første HOTDOG-boken, med oppskriftene som startet hele universet finnes fortsatt som e-bok — og fungerer like fint på nettbrett eller mobil ved strikkekurven.'
+            imageSrc='/book-cover.jpg'
+            imageAlt='HOTDOG Hundestrikk – den første boken (e-bok)'
+            primaryHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
+            primaryLabel='Kjøp e-boken'
             primaryNewTab={true}
-            secondaryHref={norliHref}
-            secondaryLabel='Kjøp hos Norli'
-            secondaryNewTab={true}
-            tertiaryHref={bonnierHref}
-            tertiaryLabel='Kjøp hos Bonnier'
-            tertiaryNewTab={true}
         />
 
         <CommunityGallery

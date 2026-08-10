@@ -306,6 +306,26 @@ select {
     margin-top: 2rem;
 }
 
+.hero__actions .button--primary {
+    transition:
+        background 200ms ease,
+        color 200ms ease,
+        box-shadow 200ms ease,
+        transform 160ms ease;
+}
+
+.hero__actions:has(.button--secondary:hover) .button--primary {
+    background: var(--surface-2);
+    color: var(--text);
+    box-shadow: none;
+}
+
+.hero__actions .button--secondary:hover {
+    background: linear-gradient(135deg, var(--primary), var(--primary-2));
+    color: white;
+    box-shadow: var(--shadow);
+}
+
 .hero__visual {
     position: relative;
 }

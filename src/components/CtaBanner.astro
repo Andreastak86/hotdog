@@ -12,6 +12,8 @@ interface Props {
     tertiaryHref?: string;
     tertiaryLabel?: string;
     tertiaryNewTab?: boolean;
+    imageSrc?: string;
+    imageAlt?: string;
 }
 
 const {
@@ -27,6 +29,8 @@ const {
     tertiaryHref,
     tertiaryLabel,
     tertiaryNewTab = true,
+    imageSrc = "/book-cover-2.jpg",
+    imageAlt = "HOTDOG Hundestrikk",
 } = Astro.props;
 
 const hasPrimary = primaryHref && primaryLabel;
@@ -110,16 +114,16 @@ const hasActions = hasPrimary || hasSecondary || hasTertiary;
                                 class='cta-banner__image-link'
                             >
                                 <img
-                                    src='/book-cover-2.jpg'
-                                    alt='HOTDOG Hundestrikk'
+                                    src={imageSrc}
+                                    alt={imageAlt}
                                     class='cta-banner__image'
                                     loading='lazy'
                                 />
                             </a>
                         ) : (
                             <img
-                                src='/book-cover-2.jpg'
-                                alt='HOTDOG Hundestrikk'
+                                src={imageSrc}
+                                alt={imageAlt}
                                 class='cta-banner__image'
                                 loading='lazy'
                             />
