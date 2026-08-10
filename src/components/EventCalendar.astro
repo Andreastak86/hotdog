@@ -1,0 +1,371 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import type { EventItem } from "../data/events";
+
+interface Props {
+    events: EventItem[];
+}
+
+const { events = [] } = Astro.props;
+
+const monthNamesFull = [
+    "januar", "februar", "mars", "april", "mai", "juni",
+    "juli", "august", "september", "oktober", "november", "desember",
+];
+const monthNamesShort = [
+    "jan", "feb", "mar", "apr", "mai", "jun",
+    "jul", "aug", "sep", "okt", "nov", "des",
+];
+const weekdayLabels = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"];
+
+const pad = (n: number) => n.toString().padStart(2, "0");
+const toMonthKey = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}`;
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const todayKey = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+const withDates = events
+    .map((event) => ({ ...event, dateObj: new Date(event.date) }))
+    .sort((a, b) => a.dateObj.getTime() - b.dateObj.getTime());
+
+// Mobil/nettbrett: enkel agenda-liste, delt i kommende/tidligere
+const upcoming = withDates.filter((event) => event.dateObj >= today);
+const past = withDates.filter((event) => event.dateObj < today).reverse();
+
+// Desktop: kalendervisning gruppert på dato, alle måneder vises samlet (ingen klikking)
+const eventsByDate = new Map<string, typeof withDates>();
+for (const event of withDates) {
+    if (!eventsByDate.has(event.date)) eventsByDate.set(event.date, []);
+    eventsByDate.get(event.date)!.push(event);
+}
+
+const months: { key: string; year: number; month: number; label: string }[] = [];
+if (withDates.length > 0) {
+    const first = withDates[0].dateObj;
+    const last = withDates[withDates.length - 1].dateObj;
+    const cursor = new Date(first.getFullYear(), first.getMonth(), 1);
+    const end = new Date(last.getFullYear(), last.getMonth(), 1);
+    while (cursor <= end) {
+        const name = monthNamesFull[cursor.getMonth()];
+        months.push({
+            key: toMonthKey(cursor),
+            year: cursor.getFullYear(),
+            month: cursor.getMonth(),
+            label: `${name[0].toUpperCase()}${name.slice(1)} ${cursor.getFullYear()}`,
+        });
+        cursor.setMonth(cursor.getMonth() + 1);
+    }
+}
+
+function buildWeeks(year: number, month: number) {
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const startOffset = (new Date(year, month, 1).getDay() + 6) % 7;
+    const cells: { day: number | null; dateKey: string | null }[] = [];
+    for (let i = 0; i < startOffset; i++) cells.push({ day: null, dateKey: null });
+    for (let d = 1; d <= daysInMonth; d++) {
+        cells.push({ day: d, dateKey: `${year}-${pad(month + 1)}-${pad(d)}` });
+    }
+    while (cells.length % 7 !== 0) cells.push({ day: null, dateKey: null });
+    const weeks: (typeof cells)[] = [];
+    for (let i = 0; i < cells.length; i += 7) weeks.push(cells.slice(i, i + 7));
+    return weeks;
+}
+
+// Data til klikk-på-dato-panelet, sendes til klient-scriptet som ren JSON
+const detailData: Record<
+    string,
+    {
+        day: string;
+        month: string;
+        type: string;
+        title: string;
+        location?: string;
+        description?: string;
+        past: boolean;
+    }[]
+> = {};
+for (const [dateKey, list] of eventsByDate.entries()) {
+    detailData[dateKey] = list.map((event) => ({
+        day: pad(event.dateObj.getDate()),
+        month: monthNamesShort[event.dateObj.getMonth()],
+        type: event.type,
+        title: event.title,
+        location: event.location,
+        description: event.description,
+        past: event.dateObj < today,
+    }));
+}
+
+const defaultDateKey = (upcoming[0] ?? past[0])?.date ?? null;
+---
+
+<section class='section events-section calendar-only'>
+    <div class='container'>
+        <SectionHeading
+            eyebrow='HOTDOG på turné'
+            title='Arrangementskalender'
+            text='Alle steder HOTDOG har vært, og hvor du kan møte Elin videre — samlet på ett sted.'
+        />
+
+        <div class='calendar-legend'>
+            <span class='calendar-legend__item calendar-legend__item--upcoming'>Kommende</span>
+            <span class='calendar-legend__item calendar-legend__item--past'>Har vært</span>
+        </div>
+
+        <div class='calendar'>
+            {
+                months.length > 0 && (
+                    <div class='calendar__months'>
+                        {months.map((m) => {
+                            const weeks = buildWeeks(m.year, m.month);
+                            return (
+                                <div class='calendar__month'>
+                                    <h3 class='calendar__month-heading'>{m.label}</h3>
+                                    <div class='calendar__weekdays'>
+                                        {weekdayLabels.map((w) => (
+                                            <span>{w[0]}</span>
+                                        ))}
+                                    </div>
+                                    <div class='calendar__days'>
+                                        {weeks.flatMap((week) =>
+                                            week.map((cell) => {
+                                                const dayEvents = cell.dateKey
+                                                    ? (eventsByDate.get(cell.dateKey) ?? [])
+                                                    : [];
+                                                const hasEvent = dayEvents.length > 0;
+                                                const isPast =
+                                                    hasEvent && dayEvents[0].dateObj < today;
+                                                const isToday = cell.dateKey === todayKey;
+                                                const isDefault = cell.dateKey === defaultDateKey;
+
+                                                if (!cell.day) {
+                                                    return <div class='calendar__cell calendar__cell--empty' />;
+                                                }
+
+                                                return hasEvent ? (
+                                                    <button
+                                                        type='button'
+                                                        class:list={[
+                                                            "calendar__cell",
+                                                            "calendar__cell--event",
+                                                            isPast && "calendar__cell--past",
+                                                            isToday && "calendar__cell--today",
+                                                            isDefault && "calendar__cell--selected",
+                                                        ]}
+                                                        data-date={cell.dateKey}
+                                                    >
+                                                        {cell.day}
+                                                    </button>
+                                                ) : (
+                                                    <div
+                                                        class:list={[
+                                                            "calendar__cell",
+                                                            isToday && "calendar__cell--today",
+                                                        ]}
+                                                    >
+                                                        {cell.day}
+                                                    </div>
+                                                );
+                                            }),
+                                        )}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )
+            }
+
+            <div class='calendar__detail' id='cal-detail'>
+                <p class='event-empty'>Klikk på en markert dato for å se detaljer.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script define:vars={{ detailData, defaultDateKey }}>
+    const detail = document.getElementById("cal-detail");
+
+    function renderDetail(dateKey) {
+        const dayEvents = dateKey ? detailData[dateKey] : null;
+        detail.innerHTML = "";
+
+        if (!dayEvents) {
+            const empty = document.createElement("p");
+            empty.className = "event-empty";
+            empty.textContent = "Klikk på en markert dato for å se detaljer.";
+            detail.append(empty);
+            return;
+        }
+
+        dayEvents.forEach((event) => {
+            const row = document.createElement("div");
+            row.className = "event-row";
+
+            const dateEl = document.createElement("div");
+            dateEl.className = "event-row__date" + (event.past ? " event-row__date--past" : "");
+            const day = document.createElement("span");
+            day.className = "event-row__day";
+            day.textContent = event.day;
+            const month = document.createElement("span");
+            month.className = "event-row__month";
+            month.textContent = event.month;
+            dateEl.append(day, month);
+
+            const body = document.createElement("div");
+            body.className = "event-row__body";
+            const type = document.createElement("span");
+            type.className = "event-card__type";
+            type.textContent = event.type;
+            const title = document.createElement("h4");
+            title.textContent = event.title;
+            body.append(type, title);
+
+            if (event.location) {
+                const location = document.createElement("p");
+                location.className = "event-card__location";
+                location.textContent = event.location;
+                body.append(location);
+            }
+
+            if (event.description) {
+                const description = document.createElement("p");
+                description.className = "event-card__description";
+                description.textContent = event.description;
+                body.append(description);
+            }
+
+            row.append(dateEl, body);
+            detail.append(row);
+        });
+    }
+
+    document.querySelectorAll(".calendar__cell--event").forEach((cell) => {
+        cell.addEventListener("click", () => {
+            document
+                .querySelectorAll(".calendar__cell--selected")
+                .forEach((el) => el.classList.remove("calendar__cell--selected"));
+            cell.classList.add("calendar__cell--selected");
+            renderDetail(cell.dataset.date);
+        });
+    });
+
+    renderDetail(defaultDateKey);
+</script>
+
+<div class='agenda-only'>
+    <section class='section events-section'>
+        <div class='container'>
+            <SectionHeading
+                eyebrow='Følg med'
+                title='Kommende arrangementer'
+                text='Her finner du de neste stedene du kan møte Elin og HOTDOG-universet.'
+            />
+
+            {
+                upcoming.length > 0 ? (
+                    <div class='event-list'>
+                        {upcoming.map((event) => (
+                            <article class='event-card'>
+                                {event.image && (
+                                    <div class='event-card__media'>
+                                        <img src={event.image} alt='' loading='lazy' />
+                                        <div class='event-card__date'>
+                                            <span class='event-card__day'>
+                                                {event.dateObj
+                                                    .getDate()
+                                                    .toString()
+                                                    .padStart(2, "0")}
+                                            </span>
+                                            <span class='event-card__month'>
+                                                {monthNamesShort[event.dateObj.getMonth()]}
+                                            </span>
+                                        </div>
+                                    </div>
+                                )}
+                                <div class='event-card__body'>
+                                    <span class='event-card__type'>{event.type}</span>
+                                    <h3>{event.title}</h3>
+                                    {event.location && (
+                                        <p class='event-card__location'>{event.location}</p>
+                                    )}
+                                    {event.description && (
+                                        <p class='event-card__description'>
+                                            {event.description}
+                                        </p>
+                                    )}
+                                    {event.href && (
+                                        <a
+                                            href={event.href}
+                                            class='event-card__link'
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                        >
+                                            {event.linkLabel ?? "Mer info"}
+                                        </a>
+                                    )}
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                ) : (
+                    <p class='event-empty'>
+                        Ingen kommende arrangementer akkurat nå — følg med, det kommer mer!
+                    </p>
+                )
+            }
+        </div>
+    </section>
+
+    <section class='section events-section events-section--past section--soft'>
+        <div class='container'>
+            <SectionHeading
+                eyebrow='Tilbakeblikk'
+                title='Tidligere arrangementer'
+                text='Et lite tilbakeblikk på steder HOTDOG allerede har vært innom.'
+            />
+
+            {
+                past.length > 0 ? (
+                    <div class='event-list'>
+                        {past.map((event) => (
+                            <article class='event-card event-card--past'>
+                                {event.image && (
+                                    <div class='event-card__media'>
+                                        <img src={event.image} alt='' loading='lazy' />
+                                        <div class='event-card__date'>
+                                            <span class='event-card__day'>
+                                                {event.dateObj
+                                                    .getDate()
+                                                    .toString()
+                                                    .padStart(2, "0")}
+                                            </span>
+                                            <span class='event-card__month'>
+                                                {monthNamesShort[event.dateObj.getMonth()]}
+                                            </span>
+                                        </div>
+                                    </div>
+                                )}
+                                <div class='event-card__body'>
+                                    <span class='event-card__type'>{event.type}</span>
+                                    <h3>{event.title}</h3>
+                                    {event.location && (
+                                        <p class='event-card__location'>{event.location}</p>
+                                    )}
+                                    {event.description && (
+                                        <p class='event-card__description'>
+                                            {event.description}
+                                        </p>
+                                    )}
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                ) : (
+                    <p class='event-empty'>Ingen tidligere arrangementer enda.</p>
+                )
+            }
+        </div>
+    </section>
+</div>

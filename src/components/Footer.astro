@@ -7,6 +7,7 @@ interface Props {
     instagramHref?: string;
     shopHref?: string;
     publisherHref?: string;
+    eventsHref?: string;
 
     partnerFacebookHref?: string;
     partnerInstagramHref?: string;
@@ -20,6 +21,7 @@ const {
     instagramHref,
     shopHref,
     publisherHref,
+    eventsHref,
 
     partnerFacebookHref,
     partnerInstagramHref,
@@ -45,6 +47,12 @@ const year = new Date().getFullYear();
                     >
                         Kjøp e-boken
                     </a>
+                )
+            }
+
+            {
+                eventsHref && (
+                    <a href={eventsHref}>Se arrangementer</a>
                 )
             }
 

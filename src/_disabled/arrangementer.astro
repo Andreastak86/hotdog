@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import EventCalendar from "../components/EventCalendar.astro";
+import Footer from "../components/Footer.astro";
+import { events } from "../data/events";
+---
+
+<BaseLayout
+    title='Arrangementer | HOTDOG Hundestrikk'
+    description='Følg HOTDOG Hundestrikk på turné – boksigneringer, TV- og radioinnslag og andre arrangementer med forfatter Elin Takvam.'
+>
+    <main>
+        <section class='section'>
+            <div class='container'>
+                <SectionHeading
+                    eyebrow='HOTDOG på turné'
+                    title='Arrangementer'
+                    text='Elin er ute og møter lesere (og hunder!) over hele landet. Her finner du en oversikt over boksigneringer, TV- og radioinnslag og andre steder du kan møte HOTDOG.'
+                />
+            </div>
+        </section>
+
+        <EventCalendar events={events} />
+    </main>
+
+    <Footer
+        brand='HOTDOG av Elin Takvam'
+        text='En varm og gjennomført bok for strikkeglade hundemennesker.'
+        shopHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
+        publisherHref='https://bonnierforlag.no/products/hotdog-den-store-hundestrikkeboken'
+        eventsHref='/arrangementer'
+        facebookHref='https://www.facebook.com/groups/653163954334182'
+        instagramHref='https://www.instagram.com/hotdog_hundestrikk/'
+        partnerFacebookHref='https://www.facebook.com/profile.php?id=61577422055000'
+        partnerInstagramHref='https://www.instagram.com/linnsullunivers/'
+    />
+</BaseLayout>
