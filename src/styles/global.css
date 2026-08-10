@@ -306,6 +306,26 @@ select {
     margin-top: 2rem;
 }
 
+.hero__actions .button--primary {
+    transition:
+        background 200ms ease,
+        color 200ms ease,
+        box-shadow 200ms ease,
+        transform 160ms ease;
+}
+
+.hero__actions:has(.button--secondary:hover) .button--primary {
+    background: var(--surface-2);
+    color: var(--text);
+    box-shadow: none;
+}
+
+.hero__actions .button--secondary:hover {
+    background: linear-gradient(135deg, var(--primary), var(--primary-2));
+    color: white;
+    box-shadow: var(--shadow);
+}
+
 .hero__visual {
     position: relative;
 }
@@ -499,7 +519,7 @@ select {
     font-family: "DM Sans", sans-serif;
     font-weight: 800;
     font-size: clamp(2.2rem, 5vw, 4.2rem);
-    line-height: 0.95;
+    line-height: 1.1;
     letter-spacing: -0.04em;
     text-transform: uppercase;
 }
@@ -519,6 +539,24 @@ select {
     justify-content: flex-start;
     align-items: center;
     margin-top: 1.5rem;
+}
+
+.cta-actions .button--primary {
+    transition:
+        background 200ms ease,
+        box-shadow 200ms ease,
+        transform 160ms ease;
+}
+
+.cta-actions:has(.button--secondary:hover) .button--primary {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: none;
+}
+
+.cta-actions .button--secondary:hover {
+    background: linear-gradient(135deg, var(--primary), var(--primary-2));
+    color: white;
+    box-shadow: var(--shadow);
 }
 
 .cta-banner__visual {

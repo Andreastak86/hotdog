@@ -63,7 +63,7 @@ const galleryItems = [
 const upcomingGalleryItems = [
     {
         src: "/dog10.png",
-        alt: "Hund i ny HOTDOG-genser fra kommende bok",
+        alt: "Hund i ny HOTDOG-genser fra den nye boken",
     },
     {
         src: "/dog11.png",
@@ -79,6 +79,11 @@ const upcomingGalleryItems = [
         alt: "Hund i mønstret genser",
     },
 ];
+
+const norliHref =
+    "https://www.norli.no/boker/hobby-og-fritid/strikk-hjem-og-hobby/handarbeid-og-strikking/hotdog-9788234729690";
+const bonnierHref =
+    "https://bonnierforlag.no/products/hotdog-den-store-hundestrikkeboken";
 
 const instagramUrl = "https://www.instagram.com/hundeneilef";
 const phone = "99550166";
@@ -113,24 +118,22 @@ const photographerPhotos = [
 
 <BaseLayout
     title='Hundegenser.no | HOTDOG Hundestrikk – strikkeoppskrifter til hund'
-    description='Oppdag HOTDOG Hundestrikk – varme og gjennomførte strikkeoppskrifter til hund. Kjøp e-boken, bli med i Facebook-gruppen og følg lanseringen av bok nummer to.'
+    description='Oppdag HOTDOG Hundestrikk – varme og gjennomførte strikkeoppskrifter til hund. Boken finnes i din lokale bokhandel og hos ARK og Norli, i tillegg til e-boken. Bli med i Facebook-gruppen.'
 >
     <main>
         <Hero
             eyebrow='Strikkeoppskrifter til hund'
             text='En sjarmerende og gjennomført bok for deg som vil strikke plagg med personlighet, god passform og varme. Oppdag HOTDOG-universet – og bli med i et fellesskap fullt av hunder, ull og stor skaperglede.'
-            images={[
-                { src: '/book-cover.jpg', alt: 'HOTDOG Hundestrikk – bok 1' },
-                { src: '/book-cover-2.jpg', alt: 'HOTDOG Hundestrikk – bok 2' },
-            ]}
-            primaryHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
-            primaryLabel='Kjøp e-boken'
+            imageSrc='/book-cover-2.jpg'
+            imageAlt='HOTDOG Hundestrikk – den store hundestrikkeboken'
+            primaryHref='https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-9788234729690'
+            primaryLabel='Kjøp hos ARK'
             primaryNewTab={true}
-            secondaryHref='https://www.facebook.com/groups/653163954334182'
-            secondaryLabel='Bli med i Facebook-gruppen'
+            secondaryHref={norliHref}
+            secondaryLabel='Kjøp hos Norli'
             secondaryNewTab={true}
-            tertiaryHref='https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-9788234729690'
-            tertiaryLabel='Kjøp Hotdog – den store hundestrikkeboken'
+            tertiaryHref='https://www.facebook.com/groups/653163954334182'
+            tertiaryLabel='Bli med i Facebook-gruppen'
             tertiaryNewTab={true}
             badgeText='Strikket med kjærlighet'
         />
@@ -143,7 +146,7 @@ const photographerPhotos = [
         />
 
         <VideoSection
-            eyebrow='Fra neste HOTDOG-bok'
+            eyebrow='Fra den nye HOTDOG-boken'
             title='Se hundene i aksjon'
             text='Oppskriftene lever ikke bare på papir – de brukes hver dag av hunder som både fryser og fortjener å se bra ut.'
             src='/video.mp4'
@@ -154,7 +157,7 @@ const photographerPhotos = [
             title='Linns Ullunivers'
             text='For deg som elsker hundegensere, men ikke nødvendigvis elsker å telle masker en tirsdag kveld.'
             name='Linns Ullunivers'
-            description='Kan du ikke strikke selv, eller kanskje tiden ikke strekker til? Fortvil ikke! Du kan bestille gensere etter hundens mål hos Linns ullunivers! Hun er teststrikker til neste bok og kjenner disse oppskriftene inn og ut, og har mange fornøyde kunder — både med og uten pels! Du finner henne på Facebook og Instagram'
+            description='Kan du ikke strikke selv, eller kanskje tiden ikke strekker til? Fortvil ikke! Du kan bestille gensere etter hundens mål hos Linns ullunivers! Hun var teststrikker for den nye boken og kjenner disse oppskriftene inn og ut, og har mange fornøyde kunder — både med og uten pels! Du finner henne på Facebook og Instagram'
             primaryHref='https://www.facebook.com/profile.php?id=61577422055000'
             primaryLabel='Facebook'
             secondaryHref='https://www.instagram.com/linnsullunivers/'
@@ -167,7 +170,7 @@ const photographerPhotos = [
             eyebrow='Fanget med kjærlighet'
             title='Forevig din firbeinte bestevenn'
             lead='Ønsker du å forevige pelsklingen din med profesjonelle og varme bilder fulle av personlighet?'
-            text='Nora Egenæs er en dyktig hobbyfotograf med base nær Oslo, og har en egen evne til å fange det lille ekstra – blikket, uttrykket og sjarmen som gjør hunden din helt unik. Hun bidrar også med bilder til den neste HOTDOG-boken, og vet virkelig hvordan hun får frem det beste i hvert eneste motiv. Send henne en melding og hør om hun kan forevige din firbeinte bestevenn.'
+            text='Nora Egenæs er en dyktig hobbyfotograf med base nær Oslo, og har en egen evne til å fange det lille ekstra – blikket, uttrykket og sjarmen som gjør hunden din helt unik. Hun har også bidratt med bilder til den nye HOTDOG-boken, og vet virkelig hvordan hun får frem det beste i hvert eneste motiv. Send henne en melding og hør om hun kan forevige din firbeinte bestevenn.'
             instagramHref={instagramUrl}
             messageHref={`sms:${phone}?body=${smsMessage}`}
             photos={photographerPhotos}
@@ -188,22 +191,21 @@ const photographerPhotos = [
         />
 
         <CtaBanner
-            eyebrow='Ny bok i høst'
-            title='En ny bok er på vei!'
-            text='HOTDOG vokser videre. En helt ny bok er nå på vei til forlag, med enda flere oppskrifter, historier og varme plagg til firbente favoritter. Den er ikke i salg ennå – men du kan bli med bak kulissene og følge reisen frem mot lansering.'
-            primaryHref='https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-9788234729690'
-            primaryLabel='Forhåndsbestill bok i dag!'
+            eyebrow='E-Bok'
+            title='HOTDOG - Varme gensere for kalde hunder'
+            text='Den første HOTDOG-boken, med oppskriftene som startet hele universet finnes fortsatt som e-bok — og fungerer like fint på nettbrett eller mobil ved strikkekurven.'
+            imageSrc='/book-cover.jpg'
+            imageAlt='HOTDOG Hundestrikk – den første boken (e-bok)'
+            primaryHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
+            primaryLabel='Kjøp e-boken'
             primaryNewTab={true}
-            secondaryHref='https://www.facebook.com/groups/653163954334182'
-            secondaryLabel='Følg lanseringen'
-            secondaryNewTab={true}
         />
 
         <CommunityGallery
             class='community-gallery--upcoming'
-            eyebrow='Et lite glimt av det som kommer'
+            eyebrow='Flere gensere fra boken'
             title='Gensere fra den nye boken'
-            text='Her er noen av genserne som kommer i neste bok av HOTDOG. Flere modeller er på vei, og boken er ikke i salg ennå.'
+            text='Her er noen av genserne fra den nye boken av HOTDOG. Boken er nå i salg i bokhandlere over hele landet.'
             items={upcomingGalleryItems}
         />
     </main>
@@ -214,6 +216,7 @@ const photographerPhotos = [
         brand='HOTDOG av Elin Takvam'
         text='En varm og gjennomført bok for strikkeglade hundemennesker.'
         shopHref='https://ebok.no/eboker/hobby-og-fritid/hotdog-elin-takvam/'
+        publisherHref={bonnierHref}
         facebookHref='https://www.facebook.com/groups/653163954334182'
         instagramHref='https://www.instagram.com/hotdog_hundestrikk/'
         partnerFacebookHref='https://www.facebook.com/profile.php?id=61577422055000'

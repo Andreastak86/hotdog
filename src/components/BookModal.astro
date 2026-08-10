@@ -1,5 +1,7 @@
 ---
 const arkHref = 'https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-9788234729690';
+const norliHref = 'https://www.norli.no/boker/hobby-og-fritid/strikk-hjem-og-hobby/handarbeid-og-strikking/hotdog-9788234729690';
+const bonnierHref = 'https://bonnierforlag.no/products/hotdog-den-store-hundestrikkeboken';
 ---
 
 <div id='book-modal' class='modal-overlay' role='dialog' aria-modal='true' aria-label='Ny bok fra HOTDOG'>
@@ -19,11 +21,16 @@ const arkHref = 'https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-97
         </div>
 
         <div class='modal__content'>
-            <span class='eyebrow'>Ny bok i høst</span>
-            <h2>En ny bok er på vei!</h2>
+            <span class='eyebrow'>Ny bok!</span>
+            <h2>Boken er ute nå!</h2>
             <p>
                 Enda flere oppskrifter, historier og varme plagg til firbente favoritter —
-                og du kan allerede sikre deg ett eksemplar i dag.
+                utgitt av
+                <a href={bonnierHref} target='_blank' rel='noopener noreferrer'>Bonnier</a>,
+                og nå i salg i din lokale bokhandel, hos
+                <a href={arkHref} target='_blank' rel='noopener noreferrer'>ARK</a>,
+                <a href={norliHref} target='_blank' rel='noopener noreferrer'>Norli</a>
+                og hvor du ellers kjøper bøker.
             </p>
             <div class='modal__actions'>
                 <a
@@ -33,7 +40,23 @@ const arkHref = 'https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-97
                     rel='noopener noreferrer'
                     id='modal-cta'
                 >
-                    Forhåndsbestill boken i dag!
+                    Kjøp hos ARK
+                </a>
+                <a
+                    href={norliHref}
+                    class='button button--secondary'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                >
+                    Kjøp hos Norli
+                </a>
+                <a
+                    href={bonnierHref}
+                    class='button button--secondary'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                >
+                    Kjøp hos Bonnier
                 </a>
             </div>
         </div>
@@ -148,6 +171,38 @@ const arkHref = 'https://www.ark.no/produkt/boker/hobbyboker-og-fritid/hotdog-97
         color: var(--muted);
         line-height: 1.7;
         margin: 0 0 1.75rem;
+    }
+
+    .modal__content p a {
+        color: var(--primary);
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    .modal__actions .button--secondary {
+        border: 2px solid var(--surface);
+    }
+
+    .modal__actions .button--primary {
+        transition:
+            background 200ms ease,
+            color 200ms ease,
+            border-color 200ms ease,
+            box-shadow 200ms ease,
+            transform 160ms ease;
+    }
+
+    .modal__actions:has(.button--secondary:hover) .button--primary {
+        background: var(--surface-2);
+        color: var(--text);
+        box-shadow: none;
+    }
+
+    .modal__actions .button--secondary:hover {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: white;
+        border-color: transparent;
+        box-shadow: var(--shadow);
     }
 
     .modal__actions {

@@ -9,6 +9,11 @@ interface Props {
     secondaryHref?: string;
     secondaryLabel?: string;
     secondaryNewTab?: boolean;
+    tertiaryHref?: string;
+    tertiaryLabel?: string;
+    tertiaryNewTab?: boolean;
+    imageSrc?: string;
+    imageAlt?: string;
 }
 
 const {
@@ -21,11 +26,17 @@ const {
     secondaryHref,
     secondaryLabel,
     secondaryNewTab = true,
+    tertiaryHref,
+    tertiaryLabel,
+    tertiaryNewTab = true,
+    imageSrc = "/book-cover-2.jpg",
+    imageAlt = "HOTDOG Hundestrikk",
 } = Astro.props;
 
 const hasPrimary = primaryHref && primaryLabel;
 const hasSecondary = secondaryHref && secondaryLabel;
-const hasActions = hasPrimary || hasSecondary;
+const hasTertiary = tertiaryHref && tertiaryLabel;
+const hasActions = hasPrimary || hasSecondary || hasTertiary;
 ---
 
 <section class='section'>
@@ -72,6 +83,21 @@ const hasActions = hasPrimary || hasSecondary;
                                     {secondaryLabel}
                                 </a>
                             )}
+
+                            {hasTertiary && (
+                                <a
+                                    href={tertiaryHref}
+                                    class='button button--secondary button--secondary-light'
+                                    target={tertiaryNewTab ? "_blank" : undefined}
+                                    rel={
+                                        tertiaryNewTab
+                                            ? "noopener noreferrer"
+                                            : undefined
+                                    }
+                                >
+                                    {tertiaryLabel}
+                                </a>
+                            )}
                         </div>
                     )
                 }
@@ -88,16 +114,16 @@ const hasActions = hasPrimary || hasSecondary;
                                 class='cta-banner__image-link'
                             >
                                 <img
-                                    src='/book-cover-2.jpg'
-                                    alt='HOTDOG Hundestrikk'
+                                    src={imageSrc}
+                                    alt={imageAlt}
                                     class='cta-banner__image'
                                     loading='lazy'
                                 />
                             </a>
                         ) : (
                             <img
-                                src='/book-cover-2.jpg'
-                                alt='HOTDOG Hundestrikk'
+                                src={imageSrc}
+                                alt={imageAlt}
                                 class='cta-banner__image'
                                 loading='lazy'
                             />
